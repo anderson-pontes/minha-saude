@@ -1,0 +1,15 @@
+{
+  "project_name": "minha-saude",
+  "project_ref": "qvkgadxyyzyjeiwjykgr",
+  "migration": "20261027232704_foundation.sql",
+  "applied_date": "2026-10-27",
+  "method": "Supabase Dashboard SQL Editor",
+  "sql_sha256": "f71ad4ed65ce56b9ee75808b90dead4bec28323674509eec1570b7ab6125bd9e",
+  "remote_migration_history_recorded": false,
+  "validation": {
+    "tables": 11,
+    "policies": 44,
+    "anonymous_api_denied": 11,
+    "remote_transactional_rls_test": "passed_and_rolled_back"
+  }
+}

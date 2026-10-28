@@ -1,0 +1,32 @@
+{
+  "project_name": "minha-saude",
+  "project_ref": "qvkgadxyyzyjeiwjykgr",
+  "migration": "20261028231442_phase2_network.sql",
+  "original_review_filename": "20261028001042_phase2_network.sql",
+  "remote_version": "20261028231442",
+  "applied_date": "2026-10-28",
+  "method": "Supabase MCP apply_migration",
+  "authorization": "Explicit user approval: autorizado",
+  "sql_sha256": "4a00abdf534c2f23acd05c7b02d482a329b543981e6056ffc46726cb63421474",
+  "remote_migration_history_recorded": true,
+  "validation": {
+    "tables": 12,
+    "rls_enabled_tables": 12,
+    "policies": 48,
+    "new_functions": 5,
+    "new_functions_security_invoker": true,
+    "new_functions_anon_execute": false,
+    "remote_transactional_test": "passed_and_rolled_back",
+    "remote_test": "supabase/validate-phase2-remote.sql",
+    "tested_users": 2,
+    "anonymous_http_checks": "passed_401_42501",
+    "real_establishment_count_before": 1,
+    "real_establishment_count_after": 1,
+    "test_records_persisted": 0
+  },
+  "limitations": [
+    "Authenticated hosted HTTP/browser flow was not exercised with real login credentials; SQL role/claim isolation and local browser workflows were tested.",
+    "Foundation remains manually applied without a remote migration history entry; reconcile before using db push.",
+    "Pre-existing advisor warnings for rls_auto_enable and leaked password protection remain unchanged."
+  ]
+}
