@@ -80,6 +80,8 @@ test('international numbers and legacy Brazilian contacts remain intact', async 
   await step(page, 2); await page.getByRole('button', { name: 'Editar contato 1', exact: true }).click()
   await expect(page.getByLabel('Número de telefone 1', { exact: true })).toHaveValue('(91) 3333-4444')
   await page.getByRole('button', { name: 'Adicionar contato', exact: true }).click()
+  await page.getByLabel('Número de telefone 2', { exact: true }).pressSequentially('+442079460018', { delay: 30 })
+  await expect(page.getByLabel('Número de telefone 2', { exact: true })).toHaveValue('+442079460018')
   await paste(page.getByLabel('Número de telefone 2', { exact: true }), '+44 20 7946 0018')
   await expect(page.getByLabel('Número de telefone 2', { exact: true })).toHaveValue('+442079460018')
   await page.getByRole('button', { name: 'Salvar estabelecimento', exact: true }).click()
@@ -134,6 +136,7 @@ for (const width of [360, 390, 430, 768, 1440]) test(`registration picker and co
   await noOverflow(page)
   const bounds = await picker.boundingBox()
   if (width < 768) { expect(bounds!.width).toBe(width); expect(Math.round(bounds!.y + bounds!.height)).toBe(900) }
+  else { expect(Math.abs(bounds!.x + bounds!.width / 2 - width / 2)).toBeLessThan(2); expect(Math.abs(bounds!.y + bounds!.height / 2 - 450)).toBeLessThan(2) }
   await page.screenshot({ path: `test-results/refined-picker-${width}.png`, fullPage: true })
   await page.keyboard.press('Escape'); await expect(picker).not.toBeVisible()
   await expect(page.getByRole('button', { name: 'Novo cadastro', exact: true })).toBeFocused()

@@ -1,6 +1,7 @@
 /* Form and consultation refinements; preserves the existing teal/navy identity. */
 :root { --mobile-nav-height: 76px; }
 body:has(dialog[open]) { overflow: hidden; }
+.network-dialog { margin: auto; }
 .required-mark { color: #0f766e; display: inline; }
 .required-field-label::after { content: ' *'; color: #0f766e; }
 .field label { display: block; line-height: 1.5; }

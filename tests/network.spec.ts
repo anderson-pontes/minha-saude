@@ -83,7 +83,7 @@ test('quick creation is deferred, atomic, and guards unsaved navigation',async({
   await page.getByRole('dialog',{name:'Cadastro rápido: Médico'}).getByRole('button',{name:'Adicionar ao formulário'}).click()
   expect((await db.query('select count(*)::int n from public.doctors')).rows[0]).toEqual({n:0})
   await page.getByRole('button',{name:'Cancelar',exact:true}).click();await expect(page.getByRole('dialog',{name:'Alterações não salvas'})).toBeVisible()
-  await page.getByRole('button',{name:'Continuar editando'}).click();await expect(page.getByText('Dra. Cadastro rápido',{exact:false})).toBeVisible()
+  await page.getByRole('button',{name:'Continuar editando'}).click();await expect(page.locator('.chip').filter({hasText:'Dra. Cadastro rápido'})).toBeVisible()
   await page.getByRole('button',{name:'Salvar estabelecimento',exact:true}).click();await expect(page.getByRole('heading',{name:'Cadastro rápido',exact:true})).toBeVisible()
   expect((await db.query('select count(*)::int n from public.specialties')).rows[0]).toEqual({n:1})
   expect((await db.query('select count(*)::int n from public.doctors')).rows[0]).toEqual({n:1})

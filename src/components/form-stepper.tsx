@@ -5,7 +5,7 @@ export function FormStepper({ steps, current, completed, navigate, disabled }: {
 }) {
   return <div className="professional-stepper">
     <div className="mobile-step-heading" aria-live="polite"><span>Etapa {current + 1} de {steps.length}</span><strong>{steps[current]}</strong></div>
-    <nav className="form-steps" aria-label="Etapas do cadastro">{steps.map((step, index) => {
+    <nav className="form-steps" aria-label="Etapas do cadastro" style={{gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))`}}>{steps.map((step, index) => {
       const Icon = step === 'Contatos' ? Phone : step === 'Endereços' ? MapPin : step === 'Especialidades' ? Tags : index === 0 ? Building2 : HeartHandshake
       return <button type="button" key={step} disabled={disabled} aria-current={current === index ? 'step' : undefined} onClick={() => navigate(index)} className={completed.includes(index) && index !== current ? 'step-completed' : ''}>
         <span className="step-icon">{completed.includes(index) && index !== current ? <Check size={18}/> : <Icon size={18}/>}</span><span>{index + 1}. {step}</span>

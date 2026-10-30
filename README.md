@@ -4,6 +4,8 @@ Rede pessoal de saúde em React, TypeScript, Vite, Tailwind e Supabase. A raiz d
 
 ## Estado atual
 
+O refinamento de UX prioriza formulários mobile, máscaras de telefone/CEP separadas da persistência, contatos compactos, stepper responsivo, consulta automática de CEP, seletor visual de cadastro e detalhes formatados. Veja o [relatório do refinamento](UX-REFINEMENT-REPORT.md). Não há nova migração para essas alterações.
+
 A fase 2 implementa CRUD, formulários progressivos, contatos/endereços, vínculos, favoritos, detalhes por UUID e a central `/cadastros`. A identidade visual e a autenticação existentes foram preservadas.
 
 **A migração da fase 2 foi autorizada, aplicada no Supabase e validada em 28/10/2026.** CRUD, buscas, transações e isolamento entre dois usuários passaram no PostgreSQL remoto com rollback dos dados de teste. A API reconhece as novas funções e rejeita acesso anônimo. Leia o [relatório completo](PHASE2-REPORT.md) e o [registro da aplicação](supabase/applied-phase2.json).
@@ -35,6 +37,7 @@ Use somente a publishable key no frontend. Nunca colocar `service_role`, secret 
 ```powershell
 npm.cmd run typecheck
 npm.cmd run lint
+npm.cmd run test:contacts
 npm.cmd run build
 npm.cmd run test:db
 npm.cmd run test:e2e

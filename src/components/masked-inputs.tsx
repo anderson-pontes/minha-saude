@@ -15,6 +15,7 @@ export function PhoneInput({ value, onValueChange, ...props }: InputProps) {
     const number = normalizePhone(pasted)
     // IMask handles normal edits/cursor. Full-number paste is normalized before masking.
     if (!/^[+\d\s().-]+$/.test(pasted.trim())) return
+    if (digitsOnly(pasted).length < 10 && !/^\s*(\+|00)/.test(pasted)) return
     event.preventDefault()
     const needsForeign = number.startsWith('+') || number.length > 11
     setForeign(needsForeign)
@@ -30,7 +31,7 @@ export function PhoneInput({ value, onValueChange, ...props }: InputProps) {
           if (event.key === '+') { event.preventDefault(); setForeign(true); onValueChange('+'); requestAnimationFrame(() => input.current?.focus()) }
         }} onBeforeInput={event => {
           if ((event.nativeEvent as InputEvent).data === '+') { event.preventDefault(); setForeign(true); onValueChange('+'); requestAnimationFrame(() => input.current?.focus()) }
-        }} placeholder="(91) 98844-9970"/>}
+        }} placeholder={props.placeholder || '(91) 98844-9970'}/>}
     <label className="phone-region"><span>Formato</span><select aria-label={`Formato de ${props['aria-label'] || 'telefone'}`} value={international ? 'international' : 'br'} onChange={e => {
       const next = e.target.value === 'international'; setForeign(next)
       onValueChange(next ? (normalized.startsWith('+') ? normalized : normalized ? `+55${normalized}` : '+') : digitsOnly(normalized.replace(/^\+55/, '')))

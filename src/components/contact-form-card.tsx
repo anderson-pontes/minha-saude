@@ -37,7 +37,7 @@ export function ContactFormCard({ contact, index, expanded, edit, collapse, chan
     {expanded && <div className="contact-card-body">
       <ContactTypeSelector value={contact.kind} index={index} onChange={kind => { change({ kind }); setTouched(false) }}/>
       <Field label={`${numberLabel} ${index + 1}`} required error={error} hint={isPhoneKind(contact.kind) ? contact.kind === 'phone' ? 'Com DDD: (91) 3333-4444.' : 'Com DDD: (91) 98844-9970. Cole com ou sem pontuação.' : undefined}>
-        {isPhoneKind(contact.kind) ? <PhoneInput value={contact.value} onValueChange={value => change({ value })} aria-label={`${numberLabel} ${index + 1}`} onBlur={() => setTouched(true)}/> :
+        {isPhoneKind(contact.kind) ? <PhoneInput value={contact.value} onValueChange={value => change({ value })} aria-label={`${numberLabel} ${index + 1}`} placeholder={contact.kind === 'phone' ? '(91) 3333-4444' : '(91) 98844-9970'} onBlur={() => setTouched(true)}/> :
           <input type={contact.kind === 'email' ? 'email' : 'text'} inputMode={contact.kind === 'email' ? 'email' : undefined} autoComplete={contact.kind === 'email' ? 'email' : 'off'} value={contact.value} maxLength={300} onChange={e => change({ value: e.target.value })} onBlur={() => setTouched(true)} placeholder={contact.kind === 'email' ? 'recepcao@clinica.com.br' : contact.kind === 'website' ? 'clinica.com.br' : 'Ex.: canal de atendimento'}/>}
       </Field>
       <Field label={`Identificação ${index + 1}`} hint="Escolha uma sugestão ou escreva sua própria descrição.">
