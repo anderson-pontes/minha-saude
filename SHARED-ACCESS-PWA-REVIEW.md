@@ -1,5 +1,7 @@
 # Minha Saúde — base compartilhada e PWA
 
+**Atualiza??o de 03/11/2026: migra??o e bootstrap aplicados.** Consulte [o registro da aplica??o e das valida??es remotas](SHARED-ACCESS-APPLIED-2026-11-03.md). O restante deste relat?rio registra a proposta e o estado anterior ? aplica??o.
+
 Data: 29/10/2026. **Implementação local preparada; nenhuma migração nova, ativação de perfil ou publicação foi executada em produção.**
 
 ## Diagnóstico e auditoria
@@ -63,7 +65,7 @@ Os helpers de autorização ficam no schema não exposto `private`, com `SECURIT
 
 ## Migração, bootstrap e rollback
 
-Proposta: [20261030010619_shared_access.sql](supabase/migrations/20261030010619_shared_access.sql).
+Proposta: [20261104015446_shared_access.sql](supabase/migrations/20261104015446_shared_access.sql).
 
 SHA-256: `83ac55f64da09f52e67147c35e26df7e52efe617b7355d86375151690f5c408d`.
 
@@ -123,7 +125,7 @@ O build PWA foi testado com **Edge e Chrome desktop reais**: manifest/MIME/ícon
 
 | Arquivos | Finalidade |
 | --- | --- |
-| `supabase/migrations/20261030010619_shared_access.sql` | Perfis, helpers, RLS, FKs, RPCs e grants propostos |
+| `supabase/migrations/20261104015446_shared_access.sql` | Perfis, helpers, RLS, FKs, RPCs e grants propostos |
 | `supabase/bootstrap-first-admin.sql`, `supabase/audit-shared-access.sql`, `supabase/rollback/*` | Ativação explícita, auditoria e reversão protegida |
 | `scripts/prepare-shared-access.py`, `scripts/test-shared-access.mjs` | Preparação local e verificação de permissões/integridade |
 | `src/lib/access.tsx`, `src/pages/admin-users.tsx` | Perfil servidor, cache e administração |

@@ -1,0 +1,38 @@
+{
+  "project_ref": "qvkgadxyyzyjeiwjykgr",
+  "applied_at_sao_paulo": "2026-11-03T22:54:46-03:00",
+  "migration_version": "20261104015446",
+  "migration_name": "shared_access",
+  "migration_file": "migrations/20261104015446_shared_access.sql",
+  "original_prepared_version": "20261030010619",
+  "source_sha256": "83ac55f64da09f52e67147c35e26df7e52efe617b7355d86375151690f5c408d",
+  "execution": "Supabase MCP apply_migration; BEGIN/COMMIT externos omitidos para usar a transação do aplicador; demais instruções preservadas",
+  "bootstrap": {
+    "script": "bootstrap-first-admin.sql",
+    "email": "andersonpinheiro.developer@gmail.com",
+    "role": "admin",
+    "status": "active"
+  },
+  "verification": {
+    "public_tables": 13,
+    "tables_without_rls": 0,
+    "policies": 49,
+    "unexpected_table_grants": 0,
+    "unvalidated_constraints": 0,
+    "existing_specialty_fingerprint_before": "b54f7ee797162f6a1e9f0d53cec1ec19",
+    "existing_specialty_fingerprint_after": "b54f7ee797162f6a1e9f0d53cec1ec19",
+    "users_after_tests": 1,
+    "profiles_after_tests": 1,
+    "specialties_after_tests": 1,
+    "other_application_tables_after_tests": 0,
+    "remote_transaction_test": "validate-shared-access-remote.sql; PASS; ROLLBACK",
+    "anonymous_rpc_api": "get_my_profile, admin_list_users, admin_set_access e search_network: HTTP 401, SQLSTATE 42501",
+    "private_schema_api": "HTTP 406, PGRST106, Invalid schema: private",
+    "remaining_security_advisor": "auth_leaked_password_protection"
+  },
+  "limits": [
+    "Papéis PostgreSQL e claims controlados; não substituem login Auth e chamadas com JWTs reais",
+    "Cópia lógica local dos dados e definições da aplicação em backups.local; não é snapshot completo do provedor nem backup de Auth",
+    "Deploy frontend/PWA não realizado nesta aplicação"
+  ]
+}

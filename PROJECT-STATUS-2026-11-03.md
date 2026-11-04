@@ -31,7 +31,7 @@ Os quatro avisos baixos vêm de uma única vulnerabilidade transitiva de `deepme
 
 Consulta pública a `https://minha-saude-cyan.vercel.app`: login e deep link respondem HTML corretamente. **Manifest, SW e quatro ícones retornam HTML em vez do recurso esperado**; `npm run audit:pwa` retorna código 1 com seis falhas. Isso confirma que o PWA local ainda não está entregue na publicação atual.
 
-A migração `20261030010619_shared_access.sql`, bootstrap e rollback foram preservados. A última auditoria privilegiada do banco continua sendo a de 29/10/2026. Não houve nova inspeção privilegiada, aplicação SQL, ativação de administrador, alteração de Auth ou deploy nesta revisão.
+A migração `20261104015446_shared_access.sql`, bootstrap e rollback foram preservados. A última auditoria privilegiada do banco continua sendo a de 29/10/2026. Não houve nova inspeção privilegiada, aplicação SQL, ativação de administrador, alteração de Auth ou deploy nesta revisão.
 
 O usuário informou que conectou Supabase/Vercel, mas as ferramentas desses serviços não foram disponibilizadas ao executor desta conversa. O CLI Supabase também não encontrou sessão autenticada. A alternativa pelo navegador foi interrompida pelo controle de automação, que não conseguiu identificar a URL do Chrome com segurança. Não foram extraídos tokens do navegador nem inseridas credenciais no repositório.
 
