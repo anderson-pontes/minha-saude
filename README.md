@@ -4,6 +4,10 @@ Rede pessoal de saúde em React, TypeScript, Vite, Tailwind e Supabase. A raiz d
 
 ## Estado atual
 
+Revis?o de 03/11/2026: depend?ncias moderadas corrigidas, telas sob demanda, bundle principal de 407 kB e verifica??es locais aprovadas. Consulte [o registro da conclus?o local e dos bloqueios remotos](PROJECT-STATUS-2026-11-03.md).
+
+**Base compartilhada e PWA preparados localmente, ainda sem migração/deploy de produção.** O build novo depende da migração de permissões e da ativação do primeiro administrador. Consulte [o plano completo de acesso, auditoria e publicação](SHARED-ACCESS-PWA-REVIEW.md) antes de publicar. A auditoria remota atual requer o MCP Supabase disponível nesta sessão.
+
 O refinamento de UX prioriza formulários mobile, máscaras de telefone/CEP separadas da persistência, contatos compactos, stepper responsivo, consulta automática de CEP, seletor visual de cadastro e detalhes formatados. Veja o [relatório do refinamento](UX-REFINEMENT-REPORT.md). Não há nova migração para essas alterações.
 
 A fase 2 implementa CRUD, formulários progressivos, contatos/endereços, vínculos, favoritos, detalhes por UUID e a central `/cadastros`. A identidade visual e a autenticação existentes foram preservadas.
@@ -13,6 +17,8 @@ A fase 2 implementa CRUD, formulários progressivos, contatos/endereços, víncu
 O MCP confirmou o projeto `qvkgadxyyzyjeiwjykgr`. A fundação já existe remotamente, com 11 tabelas e 44 políticas RLS, mas foi aplicada manualmente e não consta no histórico remoto. [Registro da aplicação inicial](supabase/applied-foundation.json). **Não recriar a fundação nem executar `db push` antes de reconciliar seu histórico.**
 
 ## Executar
+
+Requer Node.js 24.16 ou superior na linha 24 (mesma vers?o principal usada nas valida??es).
 
 ```powershell
 npm.cmd install
@@ -41,6 +47,8 @@ npm.cmd run test:contacts
 npm.cmd run build
 npm.cmd run test:db
 npm.cmd run test:e2e
+npm.cmd run test:pwa
+npm.cmd run audit:pwa # Somente leitura; falha at? os recursos PWA estarem publicados.
 ```
 
 Os testes de banco usam PostgreSQL efêmero PGlite e verificam migrações, transações e RLS com duas identidades. Os testes de interface usam Edge headless e servidor Vite isolado em `4175`. A autenticação é controlada; o adaptador HTTP dos testes da fase 2 executa as funções reais da migração no banco local. Nenhum teste acessa contas ou registros remotos reais.

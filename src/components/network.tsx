@@ -1,36 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
-import type { ReactNode } from 'react'
+import { Dialog } from './dialog'
+export { Dialog } from './dialog'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 import { Globe, Heart, Mail, MapPin, MessageCircle, Pencil, Phone, Trash2 } from 'lucide-react'
 import { Button } from './ui/button'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/auth'
+import { useAccess } from '../lib/access'
 import { categories, contactLink, errorMessage, kinds, mapsLink } from '../lib/network'
 import type { Category, Contact, Entity } from '../lib/network'
 import { displayContactValue } from '../lib/contact-utils'
 
-export function Dialog({ title, children, close, className = '', dismissOnOutside = false }: { title: string; children: ReactNode; close: () => void; className?: string; dismissOnOutside?: boolean }) {
-  const ref = useRef<HTMLDialogElement>(null)
-  const opener = useRef<HTMLElement | null>(null)
-  useEffect(() => {
-    const dialog=ref.current!
-    if (!opener.current && document.activeElement instanceof HTMLElement && !dialog.contains(document.activeElement)) opener.current=document.activeElement
-    dialog.showModal()
-    return () => {
-      dialog.close()
-      queueMicrotask(() => {
-        const modal=document.querySelector('dialog[open]')
-        if (opener.current?.isConnected && (!modal || modal.contains(opener.current))) opener.current.focus({preventScroll:true})
-      })
-    }
-  },[])
-  return <dialog ref={ref} className={`network-dialog ${className}`} aria-label={title} onCancel={event => { event.preventDefault(); close() }} onClick={event => {
-    if (!dismissOnOutside || event.target !== event.currentTarget) return
-    const bounds = event.currentTarget.getBoundingClientRect()
-    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) close()
-  }}><div className="section-title"><h2>{title}</h2><Button type="button" variant="ghost" onClick={close} aria-label="Fechar">✕</Button></div>{children}</dialog>
-}
 export function QueryError({ error, retry }: { error: unknown; retry: () => void }) {
   return <div role="alert" className="notice"><strong>Não foi possível carregar seus registros</strong><p>{errorMessage(error)}</p><Button type="button" variant="outline" onClick={retry}>Tentar novamente</Button></div>
 }
@@ -41,6 +22,7 @@ export function ContactActions({ contact }: { contact: Contact }) {
   return <div className="contact-actions">{href && <a className={`button ${contact.kind==='whatsapp'?'button-primary':'button-outline'}`} href={href} target={href.startsWith('https:') || href.startsWith('http:') ? '_blank' : undefined} rel="noopener noreferrer"><Icon size={16}/>{contact.kind==='whatsapp'?'WhatsApp':contact.kind==='email'?'Enviar e-mail':contact.kind==='website'?'Abrir site':'Ligar'}</a>}<Button type="button" variant="ghost" onClick={async()=>{try { await navigator.clipboard.writeText(displayContactValue(contact)); setMessage('Copiado') } catch { setMessage('Não foi possível copiar') }}}>Copiar</Button>{message && <small role="status">{message}</small>}</div>
 }
 export function EntityActions({ category, entity, onDeleted }: { category: Category; entity: Entity; onDeleted?: () => void }) {
+  const { canAdmin }=useAccess();
   const { session }=useAuth(); const client=useQueryClient(); const navigate=useNavigate()
   const [confirm,setConfirm]=useState(false); const [busy,setBusy]=useState(false); const [message,setMessage]=useState(''); const [failure,setFailure]=useState('')
   const favoriteCategory=category==='doctors'||category==='establishments'
@@ -59,14 +41,14 @@ export function EntityActions({ category, entity, onDeleted }: { category: Categ
   async function remove() {
     if(busy)return;setBusy(true);setFailure('')
     try {
-      const {data,error}=await supabase!.from(category).delete().eq('id',entity.id!).eq('user_id',session!.user.id).select('id').single()
+      const {data,error}=await supabase!.from(category).delete().eq('id',entity.id!).select('id').single()
       if(error)throw error
       if(!data)throw new Error('Registro indisponível')
       setConfirm(false);await client.invalidateQueries()
       if(onDeleted)onDeleted();else navigate('/cadastros',{state:{message:'Registro excluído com sucesso.'}})
     }catch(e){setFailure(errorMessage(e))}finally{setBusy(false)}
   }
-  return <><div className="entity-actions">{favoriteCategory && <Button variant="ghost" disabled={busy} aria-label={entity.favorite?'Desfavoritar':'Favoritar'} aria-pressed={!!entity.favorite} onClick={()=>void favorite()}><Heart size={18} fill={entity.favorite?'currentColor':'none'}/></Button>}<Button asChild variant="outline"><Link to={`${categories[category].path}/${entity.id}/editar`}><Pencil size={16}/>Editar</Link></Button><Button variant="ghost" disabled={busy} aria-label={`Excluir ${entity.name}`} onClick={()=>{setFailure('');setConfirm(true)}}><Trash2 size={17}/></Button></div>{message && <p role="status" className="success">{message}</p>}{failure && !confirm && <p role="alert" className="field-error">{failure}</p>}{confirm && <Dialog title="Excluir cadastro?" close={()=>{if(!busy)setConfirm(false)}}><p>Excluir “{entity.name}”? Os vínculos e dados próprios serão removidos. Os demais cadastros da rede serão preservados.</p>{failure && <p role="alert" className="field-error">{failure}</p>}<div className="form-actions"><Button variant="outline" disabled={busy} onClick={()=>setConfirm(false)}>Cancelar</Button><Button disabled={busy} onClick={()=>void remove()}>{busy?'Excluindo…':'Confirmar exclusão'}</Button></div></Dialog>}</>
+  return <><div className="entity-actions">{favoriteCategory && <Button variant="ghost" disabled={busy} aria-label={entity.favorite?'Desfavoritar':'Favoritar'} aria-pressed={!!entity.favorite} onClick={()=>void favorite()}><Heart size={18} fill={entity.favorite?'currentColor':'none'}/></Button>}{canAdmin && <Button asChild variant="outline"><Link to={`${categories[category].path}/${entity.id}/editar`}><Pencil size={16}/>Editar</Link></Button>} {canAdmin && <Button variant="ghost" disabled={busy} aria-label={`Excluir ${entity.name}`} onClick={()=>{setFailure('');setConfirm(true)}}><Trash2 size={17}/></Button>}</div>{message && <p role="status" className="success">{message}</p>}{failure && !confirm && <p role="alert" className="field-error">{failure}</p>}{canAdmin && confirm && <Dialog title="Excluir cadastro?" close={()=>{if(!busy)setConfirm(false)}}><p>Excluir “{entity.name}”? Os vínculos e dados próprios serão removidos. Os demais cadastros da rede serão preservados.</p>{failure && <p role="alert" className="field-error">{failure}</p>}<div className="form-actions"><Button variant="outline" disabled={busy} onClick={()=>setConfirm(false)}>Cancelar</Button><Button disabled={busy} onClick={()=>void remove()}>{busy?'Excluindo…':'Confirmar exclusão'}</Button></div></Dialog>}</>
 }
 export function EntityCard({ category, entity, onDeleted }: { category: Category; entity: Entity; onDeleted?: () => void }) {
   const address=entity.addresses?.find(a=>a.is_primary)??entity.addresses?.[0]

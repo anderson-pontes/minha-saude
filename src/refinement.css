@@ -1,5 +1,18 @@
 /* Form and consultation refinements; preserves the existing teal/navy identity. */
 :root { --mobile-nav-height: 76px; }
+.connection-notice { position:relative;z-index:30;display:flex;gap:10px;align-items:center;background:#fff7ed;border-bottom:1px solid #fed7aa;color:#9a3412;padding:12px max(16px,env(safe-area-inset-left));font-size:12px; }
+.connection-notice svg { flex-shrink:0; }
+.profile-menu { position:relative;font-size:12px; }
+.profile-menu summary { min-height:44px;min-width:44px;display:flex;align-items:center;justify-content:center;color:#0f766e;cursor:pointer; }
+.profile-menu > div { position:absolute;right:0;top:48px;z-index:20;min-width:230px;display:grid;gap:6px;padding:12px;background:white;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 10px 30px #0f172a20; }
+.profile-menu > div > a { min-height:44px;padding:12px;color:#0f766e; }
+.pwa-install-card { display:flex;gap:12px;align-items:flex-start;padding:16px;margin-bottom:20px;border:1px solid #c6e4de;border-radius:14px;background:#f0fdfa; }
+.pwa-install-card h2 { font-size:15px; }.pwa-install-card p { font-size:12px;color:#64748b;margin:6px 0 12px; }.pwa-install-card .category-icon { flex:0 0 auto;margin:0; }.pwa-install-card > .button { margin-left:auto;padding:8px; }.pwa-install-card > div { min-width:0; }
+.pwa-update { position:fixed;bottom:calc(var(--mobile-nav-height) + env(safe-area-inset-bottom) + 8px);left:12px;right:12px;z-index:40;display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:16px;border-radius:12px;background:white;border:1px solid #cbd5e1;box-shadow:0 8px 30px #0f172a30;font-size:12px; }.pwa-update > div { flex:1; }.pwa-update p { color:#64748b;font-size:12px; }
+.install-guide ol { list-style:decimal;padding-left:22px;margin:18px 0;font-size:14px; }.install-guide li { margin:12px 0;line-height:1.6; }.install-guide li svg { display:inline; }
+.admin-users { display:grid;gap:14px; }.admin-user-card { margin:0; }.admin-user-card h2 { font-size:16px;overflow-wrap:anywhere; }.admin-user-card p { font-size:12px;color:#64748b;overflow-wrap:anywhere; }.access-status { padding:6px 10px;border-radius:8px;font-size:12px;background:#f1f5f9;color:#64748b; }.access-status.active { background:#ecfdf5;color:#047857; }.access-status.blocked { background:#fff7ed;color:#9a3412; }
+@media(max-width:430px) { .account { gap:2px; }.profile-menu summary { font-size:11px; }.header { padding-inline:12px; }.avatar { display:none; }.pwa-install-card > .category-icon { display:none; } }
+@media(min-width:1100px) { .pwa-update { max-width:600px;left:auto;bottom:20px;right:20px; } }
 body:has(dialog[open]) { overflow: hidden; }
 .network-dialog { margin: auto; }
 .required-mark { color: #0f766e; display: inline; }

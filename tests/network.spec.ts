@@ -113,7 +113,7 @@ test('specialty and health plan pages provide create, read, update and delete',a
   expect((await db.query('select count(*)::int n from public.health_plans')).rows[0]).toEqual({n:0})
 })
 
-test('CEP lookup allows manual correction and existing details work before migration',async({page,db})=>{
+test('CEP lookup allows manual correction and missing RPC fails closed',async({page,db})=>{
   await login(page,'/estabelecimentos/novo');await page.getByLabel('Nome do estabelecimento').fill('CEP de teste');await step(page,3);await page.getByRole('button',{name:'Adicionar endereço'}).click()
   await page.route('https://viacep.com.br/**',route=>route.fulfill({json:{logradouro:'Avenida Paulista',bairro:'Bela Vista',localidade:'São Paulo',uf:'SP'}}))
   await page.getByLabel('CEP 1',{exact:true}).fill('01310100');await page.getByRole('button',{name:'Consultar CEP'}).click()
@@ -126,6 +126,6 @@ test('CEP lookup allows manual correction and existing details work before migra
     const url=new URL(route.request().url());expect(url.searchParams.get('id')).toBe(`eq.${id}`)
     return route.fulfill({json:{id,name:'Registro existente',kind:'clinic',contacts:[],addresses:[],favorites:[]}})
   })
-  await page.goto(`/estabelecimentos/${id}`);await expect(page.getByRole('heading',{name:'Registro existente',exact:true})).toBeVisible()
-  await page.reload();await expect(page.getByRole('heading',{name:'Registro existente',exact:true})).toBeVisible()
+  await page.goto(`/estabelecimentos/${id}`);await expect(page.getByRole('alert')).toContainText('precisa ser aprovada e aplicada')
+  await page.reload();await expect(page.getByRole('alert')).toContainText('precisa ser aprovada e aplicada')
 })

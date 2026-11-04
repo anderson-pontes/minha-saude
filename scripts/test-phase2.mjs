@@ -6,7 +6,7 @@ await db.exec(`create role anon;create role authenticated;create schema auth;cre
 create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
 grant usage on schema auth to authenticated,anon;grant execute on function auth.uid() to authenticated,anon;
 insert into auth.users values('11111111-1111-4111-8111-111111111111'),('22222222-2222-4222-8222-222222222222');`)
-for(const file of readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort())await db.exec(readFileSync(`supabase/migrations/${file}`,'utf8'))
+for(const file of readdirSync('supabase/migrations').filter(f=>f.endsWith('_foundation.sql')||f.endsWith('_phase2_network.sql')).sort())await db.exec(readFileSync(`supabase/migrations/${file}`,'utf8'))
 const a='11111111-1111-4111-8111-111111111111',b='22222222-2222-4222-8222-222222222222'
 async function user(id){await db.exec(`reset role;set role authenticated;select set_config('request.jwt.claim.sub','${id}',false)`)}
 async function save(type,data,id=null){return (await db.query('select public.save_network_entity($1,$2,$3::jsonb) id',[type,id,JSON.stringify(data)])).rows[0].id}

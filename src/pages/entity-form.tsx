@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react'
+import { setFormUnsaved } from '../lib/unsaved'
+import { useEffect, useId, useRef, useState } from 'react'
 import { Link, useBeforeUnload, useBlocker, useNavigate, useParams } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 import { ArrowLeft, ArrowRight, Check, ChevronDown, ClipboardCheck, LoaderCircle, Plus, Save } from 'lucide-react'
@@ -49,6 +50,8 @@ function EntityForm({ category, initial }: { category: Category; initial: Entity
   const saved = useRef(false)
   const stepRef = useRef<HTMLDivElement>(null)
   const dirty = JSON.stringify(value) !== JSON.stringify(baseline)
+  const formId=useId()
+  useEffect(()=>{setFormUnsaved(formId,dirty);return()=>setFormUnsaved(formId,false)},[formId,dirty])
   useBeforeUnload(e => { if (dirty && !saved.current) { e.preventDefault(); e.returnValue = '' } })
   const blocker = useBlocker(({ currentLocation, nextLocation }) => dirty && !saved.current && (currentLocation.pathname !== nextLocation.pathname || currentLocation.search !== nextLocation.search))
   const isPlace = category === 'establishments'

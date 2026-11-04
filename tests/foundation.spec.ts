@@ -6,6 +6,7 @@ test.beforeEach(async ({ page }) => {
     const user = { id: '11111111-1111-4111-8111-111111111111', aud: 'authenticated', role: 'authenticated', email: 'test@example.invalid', app_metadata: {}, user_metadata: {}, created_at: new Date().toISOString() }
     if (url.includes('/token')) return route.fulfill({ json: { access_token: 'test-access-token', refresh_token: 'test-refresh-token', expires_in: 3600, token_type: 'bearer', user } })
     if (url.includes('/user')) return route.fulfill({ json: user })
+    if (url.includes('/rpc/get_my_profile')) return route.fulfill({json:{id:user.id,role:'admin',status:'active',display_name:null}})
     if (url.includes('/rpc/network_summary')) return route.fulfill({ json: { establishments:0,doctors:0,specialties:0,health_plans:0 } })
     if (url.includes('/rpc/search_network')) return route.fulfill({ json: {items:[],total:0} })
     if (url.includes('/rest/')) return route.fulfill({ json: [] })
@@ -54,7 +55,7 @@ test('password update and database error are handled', async ({ page }) => {
   await expect(page).toHaveURL(/\/$/)
   await page.route('**/rest/v1/**', route => route.fulfill({ status: 403, json: { message: 'Permission denied' } }))
   await page.reload()
-  await expect(page.getByRole('alert').first()).toContainText('Não foi possível carregar seus registros')
+  await expect(page.getByRole('alert').first()).toContainText('Não foi possível verificar suas permissões')
   await page.goto('/redefinir-senha')
   await page.getByLabel('Nova senha', { exact: true }).fill('short')
   await page.getByRole('button', { name: 'Salvar nova senha' }).click()

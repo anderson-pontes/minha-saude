@@ -6,10 +6,11 @@ const owner='11111111-1111-4111-8111-111111111111'
 export const test=base.extend<{ db:PGlite }>({
   db:async({page},provide)=>{
     const db=new PGlite()
-    await db.exec(`create role anon;create role authenticated;create schema auth;create table auth.users(id uuid primary key);
+    await db.exec(`create role anon;create role authenticated;create schema auth;create table auth.users(id uuid primary key,email text);
     create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
     grant usage on schema auth to authenticated,anon;grant execute on function auth.uid() to authenticated,anon;insert into auth.users values('${owner}');`)
     for(const file of readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort())await db.exec(readFileSync(`supabase/migrations/${file}`,'utf8'))
+    await db.query("update public.profiles set role='admin',status='active' where id=$1",[owner])
     await db.exec(`set role authenticated;select set_config('request.jwt.claim.sub','${owner}',false)`)
     const user={id:owner,aud:'authenticated',role:'authenticated',email:'test@example.invalid',app_metadata:{},user_metadata:{},created_at:new Date().toISOString()}
     await page.route('https://viacep.com.br/**',route=>route.fulfill({status:503,json:{message:'Controlled unavailable service'}}))
@@ -19,16 +20,21 @@ export const test=base.extend<{ db:PGlite }>({
       if(url.pathname.includes('/user'))return route.fulfill({json:user})
       try {
         const fn=url.pathname.split('/rpc/')[1];let result:unknown
-        if(fn==='save_network_entity')result=await call(db,'save_network_entity',[body.p_type,body.p_id,JSON.stringify(body.p_data)],'$1,$2,$3::jsonb')
+        if(fn==='get_my_profile')result=await call(db,'get_my_profile',[],'')
+        else if(fn==='admin_list_users')result=await call(db,'admin_list_users',[body.p_page,body.p_size],'$1,$2')
+        else if(fn==='admin_set_access')result=await call(db,'admin_set_access',[body.p_id,body.p_role,body.p_status],'$1,$2,$3')
+        else if(fn==='save_network_entity')result=await call(db,'save_network_entity',[body.p_type,body.p_id,JSON.stringify(body.p_data)],'$1,$2,$3::jsonb')
         else if(fn==='search_network')result=await call(db,'search_network',[JSON.stringify(body.p_filters),body.p_page,body.p_size],'$1::jsonb,$2,$3')
         else if(fn==='network_document')result=await call(db,'network_document',[body.p_type,body.p_id],'$1,$2')
         else if(fn==='network_summary')result=await call(db,'network_summary',[],'')
         else {
           const table=url.pathname.split('/').pop();if(!['favorites','establishments','doctors','specialties','health_plans'].includes(table??''))throw new Error('Unexpected table')
-          if(route.request().method()==='DELETE'){
+          if(table==='establishments'&&route.request().method()==='POST'){
+            result=(await db.query('insert into public.establishments(name,kind,user_id) values($1,$2,coalesce($3::uuid,auth.uid())) returning id',[body.name,body.kind,body.user_id??null])).rows
+          }else if(route.request().method()==='DELETE'){
             const key=table==='favorites'?(url.searchParams.has('doctor_id')?'doctor_id':'establishment_id'):'id'
             const id=url.searchParams.get(key)?.replace('eq.','')
-            const rows=await db.query(`delete from public.${table} where ${key}=$1 returning id`,[id]);result=table==='favorites'?rows.rows:rows.rows[0]
+            const rows=await db.query(`delete from public.${table} where ${key}=$1 returning id`,[id]);result=table==='favorites'?rows.rows:(rows.rows[0]??null)
           }else if(table==='favorites' && route.request().method()==='POST'){
             const key=body.doctor_id?'doctor_id':'establishment_id';result=(await db.query(`insert into public.favorites(${key}) values($1) returning id`,[body[key]])).rows
           }else throw new Error('Unexpected endpoint')

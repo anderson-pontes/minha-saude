@@ -1,7 +1,8 @@
+import { PwaInstallPrompt } from '../components/pwa'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { ArrowRight, Building2, Heart, HeartHandshake, Network, Phone, Plus, Search, Stethoscope, Tags } from 'lucide-react'
+import { ArrowRight, Building2, Heart, HeartHandshake, Phone, Plus, Search, Stethoscope, Tags } from 'lucide-react'
 import { Button } from '../components/ui/button'
 import { Empty, Loading } from '../components/feedback'
 import { EntityCard, QueryError } from '../components/network'
@@ -10,14 +11,8 @@ import { categories, contactLink, rpc, useNetwork } from '../lib/network'
 import type { Category } from '../lib/network'
 import { displayContactValue } from '../lib/contact-utils'
 import { useAuth } from '../lib/auth'
+import { useAccess } from '../lib/access'
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const sections = [
-  { path: '/cadastros', title: 'Minha rede', icon: Network },
-  { path: '/estabelecimentos', title: 'Estabelecimentos', icon: Building2 },
-  { path: '/medicos', title: 'Médicos', icon: Stethoscope },
-  { path: '/favoritos', title: 'Favoritos', icon: Heart },
-]
 function SearchBox() {
   const [term, setTerm] = useState('')
   const navigate = useNavigate()
@@ -27,13 +22,14 @@ function SearchBox() {
 }
 export function HomePage() {
   const [adding, setAdding] = useState(false)
+  const { canAdmin } = useAccess()
   const { session } = useAuth()
   const recent = useNetwork({}, 1, 6)
   const favorites = useNetwork({ favorites: 'true' }, 1, 4)
   const counts = useQuery({ queryKey: ['summary', session?.user.id], enabled: !!session, queryFn: () => rpc<Record<Category, number>>('network_summary') })
   const icons = { establishments: Building2, doctors: Stethoscope, specialties: Tags, health_plans: HeartHandshake }
-  return <div className="dashboard-refined">
-    <div className="directory-heading"><div className="page-heading"><span className="eyebrow">SEU ESPAÇO DE CUIDADO</span><h1>Seu cuidado, por perto<span className="teal-text">.</span></h1><p>Organize sua rede e encontre o contato certo.</p></div><Button onClick={() => setAdding(true)}><Plus size={18}/>Novo cadastro</Button></div>
+  return <div className="dashboard-refined"><PwaInstallPrompt/>
+    <div className="directory-heading"><div className="page-heading"><span className="eyebrow">SEU ESPAÇO DE CUIDADO</span><h1>Seu cuidado, por perto<span className="teal-text">.</span></h1><p>Organize sua rede e encontre o contato certo.</p></div>{canAdmin && <Button onClick={() => setAdding(true)}><Plus size={18}/>Novo cadastro</Button>}</div>
     <section className="search-hero"><div className="hero-copy"><span className="hero-tag"><Heart size={14}/> MAIS PERTO DE VOCÊ</span><h2>Sua rede de saúde,<br/>em um só lugar.</h2><p>Busque por nome, especialidade, localização ou convênio.</p><SearchBox/></div><div className="hero-symbol" aria-hidden="true"><Stethoscope strokeWidth={1}/></div></section>
     <div className="section-title"><h2>Encontre na sua rede</h2><Link className="teal-text" to="/cadastros">Ver todos →</Link></div>
     <div className="quick-grid">{(Object.keys(categories) as Category[]).map((key, index) => {
@@ -49,8 +45,8 @@ export function HomePage() {
         const contact = data.contacts?.find(c => c.is_primary) ?? data.contacts?.[0]
         const href = contact ? contactLink(contact) : undefined
         return <article className="recent-row" key={data.id}><Link to={`${categories[category].path}/${data.id}`}><strong>{data.name}</strong><small>{categories[category].singular}{contact ? ` · ${displayContactValue(contact)}` : ''}</small></Link>{href && <a className="button button-outline" href={href} aria-label={`Contato de ${data.name}`} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"><Phone size={16}/></a>}<Link className="button button-ghost" to={`${categories[category].path}/${data.id}`} aria-label={`Ver ${data.name}`}><ArrowRight size={17}/></Link></article>
-      })}</div> : <div className="panel"><Empty title="Seu cuidado começa com uma boa conexão" description="Adicione seu primeiro cadastro à sua rede pessoal."/><Button asChild variant="outline" className="full"><Link to="/estabelecimentos/novo"><Plus size={16}/>Cadastrar estabelecimento</Link></Button></div>}
+      })}</div> : <div className="panel"><Empty title="Seu cuidado começa com uma boa conexão" description="Adicione seu primeiro cadastro à sua rede pessoal."/>{canAdmin && <Button asChild variant="outline" className="full"><Link to="/estabelecimentos/novo"><Plus size={16}/>Cadastrar estabelecimento</Link></Button>}</div>}
     </section>
-    {adding && <RegistrationTypePicker close={() => setAdding(false)}/>}
+    {canAdmin && adding && <RegistrationTypePicker close={() => setAdding(false)}/>}
   </div>
 }
