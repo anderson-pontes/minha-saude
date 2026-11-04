@@ -40,6 +40,8 @@ Use somente a publishable key no frontend. Nunca colocar `service_role`, secret 
 
 ## Verificar
 
+A importação auditável UNICASF, seus comandos, totais e pendências estão no [relatório de revisão](UNICASF-IMPORT-REVIEW.md). A extração e os testes locais foram executados; a migration e a importação remota aguardam autorização.
+
 ```powershell
 npm.cmd run typecheck
 npm.cmd run lint

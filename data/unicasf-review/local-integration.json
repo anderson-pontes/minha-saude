@@ -1,0 +1,47 @@
+{
+  "environment": "local PGlite PostgreSQL; synthetic preexisting Bianca; NOT production",
+  "content_sha256": "0dc2ea3ad205c328a251282b3115651956891d69a82474b7cd6b5ecb3a5add9d",
+  "dry_run": {
+    "new": 1449,
+    "existing": 1,
+    "review": 17
+  },
+  "execution": {
+    "reused": 1,
+    "skipped": 17,
+    "inserted": 1449,
+    "links_created": 6640,
+    "category_counts": {
+      "doctors": {
+        "reused": 1,
+        "enriched": 1186,
+        "inserted": 1185
+      },
+      "specialties": {
+        "reused": 0,
+        "enriched": 0,
+        "inserted": 61
+      },
+      "health_plans": {
+        "reused": 0,
+        "enriched": 0,
+        "inserted": 1
+      },
+      "establishments": {
+        "reused": 0,
+        "enriched": 202,
+        "inserted": 202
+      }
+    },
+    "contacts_created": 629,
+    "addresses_created": 275
+  },
+  "counts": {
+    "establishments": 202,
+    "doctors": 1186,
+    "contacts": 630,
+    "addresses": 275,
+    "runs": 2
+  },
+  "assertions": "PASS: all migrations, READ ONLY preview, strict gate, transaction rollback after inserts, strong identity reimport without rewrites, preservation of manual data and scoped links after editing, own addresses, BRASMEDE 38 doctors/local specialties, Bianca CLINICASF, plan/specialty/city/neighborhood queries, admin/viewer/blocked/anon access."
+}

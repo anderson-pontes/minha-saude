@@ -13,7 +13,7 @@ export function EntityDetailPage({ category }: { category: Category }) {
   const location = useLocation()
   if (query.isPending) return <Loading/>
   if (query.isError) return <QueryError error={query.error} retry={() => void query.refetch()}/>
-  if (!query.data) return <section className="panel"><Empty title="Registro não encontrado ou indisponível" description="Confira o link e a conta utilizada. Apenas o proprietário pode consultar este cadastro."/><Button asChild><Link to="/cadastros">Voltar à minha rede</Link></Button></section>
+  if (!query.data) return <section className="panel"><Empty title="Registro não encontrado ou indisponível" description="Confira o link e o acesso da sua conta à rede compartilhada."/><Button asChild><Link to="/cadastros">Voltar à minha rede</Link></Button></section>
   const entity = query.data
   const primaryAddress = entity.addresses?.find(a => a.is_primary) ?? entity.addresses?.[0]
   const website = normalizeWebsite(entity.website ?? '')
@@ -22,13 +22,14 @@ export function EntityDetailPage({ category }: { category: Category }) {
       <Link to={`${categories[type].path}/${item.id}`} className={type === 'health_plans' ? 'chip plan-chip' : 'related-title'}><strong>{item.name}</strong></Link>
       {!!item.specialties?.length && <p className="muted">{item.specialties.map(s => s.name).join(' · ')}</p>}
       {item.link_notes && <p className="preserve-lines attendance-note">{item.link_notes}</p>}
+      {!!item.health_plans?.length && <p className="muted">Convênios neste local: {item.health_plans.map(plan => plan.name).join(' · ')}</p>}
       {item.addresses?.map(a => <p key={a.id} className="muted"><a href={mapsLink(a)} target="_blank" rel="noopener noreferrer">{addressText(a)} ↗</a></p>)}
     </div>)}</div></section>
   }
   return <>
     <Link className="form-back" to="/cadastros">← Minha Rede de Saúde</Link>
     {location.state?.message && <p role="status" className="notice">{location.state.message}</p>}
-    <div className="detail-heading refined-detail-heading"><div className="page-heading"><span className="eyebrow"><Building2 size={14}/>{entity.kind ? kinds[entity.kind] : categories[category].singular}{entity.active === false ? ' · INATIVO' : ''}</span><h1>{entity.name}</h1>{entity.trade_name && <p>{entity.trade_name}</p>}{primaryAddress && <p className="detail-location"><MapPin size={15}/>{[primaryAddress.neighborhood, primaryAddress.city, primaryAddress.state].filter(Boolean).join(' · ')}</p>}{entity.registration_number && <p>{entity.professional_council || 'CRM'} {entity.registration_number}/{entity.registration_state}</p>}</div><EntityActions category={category} entity={entity}/></div>
+    <div className="detail-heading refined-detail-heading"><div className="page-heading"><span className="eyebrow"><Building2 size={14}/>{entity.kind ? kinds[entity.kind] : entity.professional_type || categories[category].singular}{entity.active === false ? ' · INATIVO' : ''}</span><h1>{entity.name}</h1>{entity.trade_name && <p>{entity.trade_name}</p>}{primaryAddress && <p className="detail-location"><MapPin size={15}/>{[primaryAddress.neighborhood, primaryAddress.city, primaryAddress.state].filter(Boolean).join(' · ')}</p>}{entity.registration_number && <p>{entity.professional_council || 'CRM'} {entity.registration_number}/{entity.registration_state}</p>}</div><EntityActions category={category} entity={entity}/></div>
     <div className="detail-grid refined-detail-grid"><div>
       {!!entity.contacts?.length && <section className="panel contact-detail-panel"><div className="detail-section-title"><h2>Contatos</h2><span>{entity.contacts.length} {entity.contacts.length === 1 ? 'contato' : 'contatos'}</span></div><div className="contact-detail-list">{[...entity.contacts].sort((a, b) => Number(b.is_primary) - Number(a.is_primary)).map((contact, index) => {
         const Icon = contact.kind === 'whatsapp' ? MessageCircle : contact.kind === 'email' ? Mail : contact.kind === 'mobile' ? Smartphone : contact.kind === 'website' ? Globe : Phone
@@ -41,7 +42,7 @@ export function EntityDetailPage({ category }: { category: Category }) {
       {!!entity.specialties?.length && <section className="panel"><h2>Especialidades</h2><div className="chips">{entity.specialties.map(s => <Link className="chip" key={s.id} to={`/cadastros?specialty=${s.id}`}><Tags size={13}/>{s.name}</Link>)}</div></section>}
       {related('Médicos', entity.doctors, 'doctors')}
       {related('Convênios', entity.health_plans, 'health_plans')}
-      {(website || entity.description || entity.notes) && <section className="panel"><h2>Outras informações</h2>{website && <a className="external-site" href={website} target="_blank" rel="noopener noreferrer"><Globe size={16}/>Visitar site ↗</a>}{entity.description && <p className="preserve-lines">{entity.description}</p>}{entity.notes && <><h3>Observações</h3><p className="preserve-lines">{entity.notes}</p></>}</section>}
+      {(website || entity.description || entity.notes || entity.cnpj || entity.professional_type) && <section className="panel"><h2>Outras informações</h2>{entity.cnpj && <p>CNPJ: {entity.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5')}</p>}{entity.professional_type && <p>{entity.professional_type}</p>}{website && <a className="external-site" href={website} target="_blank" rel="noopener noreferrer"><Globe size={16}/>Visitar site ↗</a>}{entity.description && <p className="preserve-lines">{entity.description}</p>}{entity.notes && <><h3>Observações</h3><p className="preserve-lines">{entity.notes}</p></>}</section>}
     </div></div>
   </>
 }

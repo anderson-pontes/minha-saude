@@ -8,7 +8,7 @@ create function auth.uid() returns uuid language sql stable as $$select nullif(c
 grant usage on schema auth to authenticated,anon;grant execute on function auth.uid() to authenticated,anon;
 insert into auth.users values('${a}','admin@example.invalid'),('${b}','viewer@example.invalid'),('${c}','pending@example.invalid'),('${d}','admin2@example.invalid');`)
 const files=readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort()
-for(const f of files.filter(f=>!f.endsWith('_shared_access.sql')))await db.exec(readFileSync(`supabase/migrations/${f}`,'utf8'))
+for(const f of files.filter(f=>f.endsWith('_foundation.sql')||f.endsWith('_phase2_network.sql')))await db.exec(readFileSync(`supabase/migrations/${f}`,'utf8'))
 const upgrade=readFileSync(`supabase/migrations/${files.find(f=>f.endsWith('_shared_access.sql'))}`,'utf8')
 async function user(id){await db.exec(`reset role;set role authenticated;select set_config('request.jwt.claim.sub','${id}',false)`)}
 async function rpc(name,args=[],sig=''){return (await db.query(`select public.${name}(${sig}) result`,args)).rows[0].result}

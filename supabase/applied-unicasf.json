@@ -1,0 +1,33 @@
+{
+  "project_ref": "qvkgadxyyzyjeiwjykgr",
+  "remote_version": "20261104232122",
+  "migration": "unicasf_import",
+  "local_file": "supabase/migrations/20261104232122_unicasf_import.sql",
+  "sql_sha256": "7ec63204f084bdba8ffaa8b1bccfa08c453480a1faa42d1ce9e84998324fffae",
+  "method": "Supabase MCP apply_migration; explicitly authorized by user",
+  "status": "completed: authorized partial import; 17 pending professional identities excluded",
+  "content_sha256": "0dc2ea3ad205c328a251282b3115651956891d69a82474b7cd6b5ecb3a5add9d",
+  "checks": {
+    "import_function_installed": true,
+    "new_tables_rls_enabled_and_forced": true,
+    "establishments": 202,
+    "doctors": 1186,
+    "specialties": 62,
+    "health_plans": 1,
+    "audit_runs": 1,
+    "contacts": 629,
+    "addresses": 275,
+    "missing_links": 0,
+    "duplicate_cnpj_groups": 0,
+    "duplicate_registration_groups": 0,
+    "idempotent_replay": true,
+    "remaining_transport_chunks": 0
+  },
+  "security_advisors": "Preexisting Auth leaked-password warning; INFO for intentionally policy-free private transport table (client privileges revoked, RLS enabled and forced).",
+  "executed_at": "2026-11-04T23:31:13.714Z",
+  "transport_migration": {
+    "version": "20261104232741",
+    "file": "supabase/migrations/20261104232741_unicasf_upload_transport.sql",
+    "sha256": "30bc599a70013a3eb8566916df7b6c4c8d8767f2276a55acb3cc6ae9415feff3"
+  }
+}

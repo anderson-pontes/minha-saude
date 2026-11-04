@@ -29,3 +29,8 @@ test-results
 *.sln
 *.sw?
 .vercel/
+__pycache__/
+data/unicasf-review/*.png
+data/unicasf-review/*.txt
+data/unicasf-review/transport/
+supabase/.temp/

@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-04",
+  "method": "Supabase MCP SELECT-only: aggregate counts; minimal specialty name lookup",
+  "schema_changes_applied": false,
+  "providers_imported": false,
+  "inventory": {
+    "establishments": 0,
+    "doctors": 0,
+    "specialties": 1,
+    "health_plans": 0
+  },
+  "matching_existing_specialties": 0,
+  "estimated_new_validated_entities": 1450,
+  "estimated_reused_entities": 0,
+  "unresolved_professional_identities": 17,
+  "scope": "Inventory reconciliation only; not an execution of the new preview RPC. Recheck database immediately before authorized execution."
+}

@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-04",
+  "project_ref": "qvkgadxyyzyjeiwjykgr",
+  "remote_writes": true,
+  "content_sha256": "0dc2ea3ad205c328a251282b3115651956891d69a82474b7cd6b5ecb3a5add9d",
+  "checks": {
+    "parser_unittest": "4 methods PASS; grouped mandatory extraction/normalization cases",
+    "legacy_database_regression": "PASS foundation, phase2, shared access",
+    "local_full_import": "See local-integration.json (must match content digest)",
+    "cli_strict": "PASS: exit 2, local report, no DB access",
+    "cli_execute_approval": "PASS: incorrect digest rejected before DB access",
+    "typescript": "PASS",
+    "eslint": "PASS",
+    "production_build": "PASS",
+    "unicasf_edge_ui": "PASS on final source/migration",
+    "full_edge_regression": "29/30 PASS; mobile form step scenario at 390px failed once; isolated rerun PASS without changes. Root cause not established.",
+    "remote_import": "PASS: 1450 inserted, 6640 links, 629 contacts, 275 addresses; 17 identities skipped",
+    "remote_integrity": "PASS: no missing links/contacts/addresses or duplicate CNPJs/registrations; Bianca and BRASMEDE verified",
+    "remote_idempotence": "PASS: already_imported=true; unchanged counts and one audit run",
+    "remote_api": "PASS: existing RPCs resolved and anonymous access refused",
+    "private_transport": "PASS: exact reconstruction, corrupt upload refused, READ ONLY preview, client access denied, 26 chunks cleaned"
+  },
+  "limitations": [
+    "No frontend deployment or real Auth UI login validated in this execution",
+    "Ananindeua has 6 physical pages versus printed /7; received data imported",
+    "16 incomplete identities and 1 conflicting registration excluded, retained in audit"
+  ]
+}

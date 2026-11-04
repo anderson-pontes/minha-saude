@@ -1,0 +1,24 @@
+{
+  "mode": "dry-run",
+  "content_sha256": "0dc2ea3ad205c328a251282b3115651956891d69a82474b7cd6b5ecb3a5add9d",
+  "extraction": {
+    "pages_processed": 75,
+    "providers": 260,
+    "establishments": 202,
+    "doctors": 1203,
+    "specialties": 61,
+    "health_plans": 1,
+    "planned_links": 6708,
+    "pending_entities": 17,
+    "pending_records": 18,
+    "possible_duplicates": 0,
+    "warnings": 20,
+    "identity_conflicts": 1,
+    "importable_links": 6640
+  },
+  "database": null,
+  "limitations": [
+    "Offline extraction only: existing/new database records were not reconciled."
+  ],
+  "strict": true
+}

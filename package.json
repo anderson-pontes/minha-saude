@@ -12,6 +12,9 @@
     "test:db": "node scripts/test-database.mjs && node scripts/test-phase2.mjs && node scripts/test-shared-access.mjs",
     "test:e2e": "playwright test",
     "test:contacts": "node scripts/test-contact-utils.mjs",
+    "import:unicasf": "node scripts/import-unicasf.mjs",
+    "test:imports": "python -m unittest discover -s scripts/imports -p test_*.py && node scripts/test-unicasf.mjs",
+    "test:import-transport": "node scripts/import-unicasf-remote.mjs --upload --prepare-only && node scripts/import-unicasf-remote.mjs --dry-run --prepare-only && node scripts/test-unicasf-transport.mjs",
     "pwa:icons": "node scripts/generate-pwa-icons.mjs",
     "test:pwa": "playwright test --config playwright.pwa.config.ts",
     "audit:pwa": "node scripts/audit-production-pwa.mjs"

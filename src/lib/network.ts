@@ -12,7 +12,7 @@ export type Address = { id?: string; postal_code: string; street: string; number
 export type Entity = {
   id?: string; name: string; kind?: string; trade_name?: string; website?: string; description?: string; notes?: string;
   active?: boolean; favorite?: boolean; created_at?: string; updated_at?: string; link_notes?: string;
-  professional_council?: string; registration_number?: string; registration_state?: string;
+  professional_council?: string; registration_number?: string; registration_state?: string; professional_type?: string; cnpj?: string;
   contacts?: Contact[]; addresses?: Address[]; specialties?: Entity[]; doctors?: Entity[]; establishments?: Entity[]; health_plans?: Entity[];
 }
 export type Result = { category: Category; data: Entity }

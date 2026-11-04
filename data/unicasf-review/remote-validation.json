@@ -1,0 +1,42 @@
+{
+  "project_ref": "qvkgadxyyzyjeiwjykgr",
+  "content_sha256": "0dc2ea3ad205c328a251282b3115651956891d69a82474b7cd6b5ecb3a5add9d",
+  "recorded_at": "2026-11-04T23:33:07.962Z",
+  "method": "READ ONLY transaction as existing active administrator; aggregate validation, no provider records emitted",
+  "verification": {
+    "addresses": 275,
+    "audit_runs": 1,
+    "bianca_has_clinicasf": true,
+    "bianca_has_own_address": true,
+    "bianca_identity_count": 1,
+    "brasmede_doctors": 38,
+    "city_neighborhood_plan_filter": 33,
+    "conflicting_crm_excluded": true,
+    "contacts": 629,
+    "doctor_filter": 1,
+    "duplicate_cnpj_groups": 0,
+    "duplicate_registration_groups": 0,
+    "expected_links": 6640,
+    "missing_addresses": 0,
+    "missing_contacts": 0,
+    "missing_links": 0,
+    "plan_filter_doctors": 1186,
+    "skipped_identities": 17,
+    "specialty_filter": 47,
+    "summary": {
+      "doctors": 1186,
+      "establishments": 202,
+      "health_plans": 1,
+      "specialties": 62
+    }
+  },
+  "idempotent_replay": {
+    "already_imported": true,
+    "unchanged_counts": true,
+    "audit_runs": 1
+  },
+  "transport_cleanup": {
+    "removed_chunks": 26,
+    "remaining_chunks": 0
+  }
+}
