@@ -4,9 +4,9 @@ Rede pessoal de saúde em React, TypeScript, Vite, Tailwind e Supabase. A raiz d
 
 ## Estado atual
 
-Revis?o de 03/11/2026: depend?ncias moderadas corrigidas, telas sob demanda, bundle principal de 407 kB e verifica??es locais aprovadas. Consulte [o registro da conclus?o local e dos bloqueios remotos](PROJECT-STATUS-2026-11-03.md).
+Revisão de 03/11/2026: dependências moderadas corrigidas, telas sob demanda, bundle principal de 407 kB e verificações locais aprovadas. Consulte [o registro da conclusão local](PROJECT-STATUS-2026-11-03.md).
 
-**Base compartilhada e PWA preparados localmente, ainda sem migração/deploy de produção.** O build novo depende da migração de permissões e da ativação do primeiro administrador. Consulte [o plano completo de acesso, auditoria e publicação](SHARED-ACCESS-PWA-REVIEW.md) antes de publicar. A auditoria remota atual requer o MCP Supabase disponível nesta sessão.
+**Acesso compartilhado aplicado no Supabase e primeiro administrador ativado em 03/11/2026.** A migração remota `20261104015446_shared_access` e os testes PostgreSQL com rollback foram concluídos. Consulte [o registro da aplicação](SHARED-ACCESS-APPLIED-2026-11-03.md). **A publicação do frontend/PWA na Vercel ainda está pendente**, assim como validações com login Auth real e dispositivos físicos.
 
 O refinamento de UX prioriza formulários mobile, máscaras de telefone/CEP separadas da persistência, contatos compactos, stepper responsivo, consulta automática de CEP, seletor visual de cadastro e detalhes formatados. Veja o [relatório do refinamento](UX-REFINEMENT-REPORT.md). Não há nova migração para essas alterações.
 
@@ -18,7 +18,7 @@ O MCP confirmou o projeto `qvkgadxyyzyjeiwjykgr`. A fundação já existe remota
 
 ## Executar
 
-Requer Node.js 24.16 ou superior na linha 24 (mesma vers?o principal usada nas valida??es).
+Requer Node.js 24.16 ou superior na linha 24 (mesma versão principal usada nas validações).
 
 ```powershell
 npm.cmd install
@@ -48,7 +48,7 @@ npm.cmd run build
 npm.cmd run test:db
 npm.cmd run test:e2e
 npm.cmd run test:pwa
-npm.cmd run audit:pwa # Somente leitura; falha at? os recursos PWA estarem publicados.
+npm.cmd run audit:pwa # Somente leitura; falha até os recursos PWA estarem publicados.
 ```
 
 Os testes de banco usam PostgreSQL efêmero PGlite e verificam migrações, transações e RLS com duas identidades. Os testes de interface usam Edge headless e servidor Vite isolado em `4175`. A autenticação é controlada; o adaptador HTTP dos testes da fase 2 executa as funções reais da migração no banco local. Nenhum teste acessa contas ou registros remotos reais.

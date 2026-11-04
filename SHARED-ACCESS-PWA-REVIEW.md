@@ -1,6 +1,6 @@
 # Minha Saúde — base compartilhada e PWA
 
-**Atualiza??o de 03/11/2026: migra??o e bootstrap aplicados.** Consulte [o registro da aplica??o e das valida??es remotas](SHARED-ACCESS-APPLIED-2026-11-03.md). O restante deste relat?rio registra a proposta e o estado anterior ? aplica??o.
+**Atualização de 03/11/2026: migração e bootstrap aplicados.** Consulte [o registro da aplicação e das validações remotas](SHARED-ACCESS-APPLIED-2026-11-03.md). O restante deste relatório registra a proposta e o estado anterior à aplicação. O aviso de tamanho do bundle foi resolvido; o pacote principal atual tem 407 kB.
 
 Data: 29/10/2026. **Implementação local preparada; nenhuma migração nova, ativação de perfil ou publicação foi executada em produção.**
 

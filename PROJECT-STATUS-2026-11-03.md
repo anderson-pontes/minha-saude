@@ -1,5 +1,7 @@
 # Revisão das pendências — 03/11/2026
 
+**Atualização às 22h57: migração compartilhada e bootstrap concluídos; testes PostgreSQL remotos com rollback aprovados.** [Registro atual da aplicação](SHARED-ACCESS-APPLIED-2026-11-03.md). As limitações de conexão descritas na seção histórica abaixo foram resolvidas. Deploy e validação com login real continuam pendentes.
+
 ## Correções concluídas localmente
 
 - ESLint atualizado para 10.14.0. Overrides explícitos de `minimatch` 11.0.4 e `glob` 14.0.3 removem os avisos moderados nas ferramentas. As APIs usadas por ESLint/Workbox foram verificadas por lint, build e testes do PWA. Node.js limitado à linha 24, a partir de 24.16.0.
@@ -27,7 +29,7 @@ As execuções finais de browser encerraram normalmente fora do sandbox restrito
 
 Os quatro avisos baixos vêm de uma única vulnerabilidade transitiva de `deepmerge` 4.3.1, na cadeia `vite-plugin-pwa` → Workbox → node-resolve. Não há versão mais recente publicada no npm na consulta desta revisão. Não foi aplicado downgrade forçado do PWA. Acompanhar [GHSA-gcqx-w48m-w2h4](https://github.com/advisories/GHSA-gcqx-w48m-w2h4).
 
-## Produção e banco: execução ainda pendente
+## Estado registrado antes da retomada do MCP
 
 Consulta pública a `https://minha-saude-cyan.vercel.app`: login e deep link respondem HTML corretamente. **Manifest, SW e quatro ícones retornam HTML em vez do recurso esperado**; `npm run audit:pwa` retorna código 1 com seis falhas. Isso confirma que o PWA local ainda não está entregue na publicação atual.
 
