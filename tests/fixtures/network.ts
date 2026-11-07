@@ -30,6 +30,11 @@ export const test=base.extend<{ db:PGlite }>({
         else if(fn==='network_locations')result=await call(db,'network_locations',[body.p_field,body.p_state,body.p_city,body.p_q,body.p_plan],'$1,$2,$3,$4,$5')
         else if(fn==='health_plan_overview')result=await call(db,'health_plan_overview',[body.p_id],'$1')
         else if(fn==='health_plan_network')result=await call(db,'health_plan_network',[body.p_plan,body.p_category,JSON.stringify(body.p_filters),body.p_page,body.p_size],'$1,$2,$3::jsonb,$4,$5')
+        else if(fn?.startsWith('agenda_') && /^agenda_[a-z_]+$/.test(fn)) {
+          const entries=Object.entries(body??{})
+          if(entries.some(([key])=>!/^p_[a-z_]+$/.test(key)))throw new Error('Unexpected argument')
+          result=await call(db,fn,entries.map(([key,value])=>key==='p_data'||key==='p_filters'?JSON.stringify(value):value),entries.map(([key],i)=>`${key} => $${i+1}${key==='p_data'||key==='p_filters'?'::jsonb':''}`).join(','))
+        }
         else if(fn==='network_document')result=await call(db,'network_document',[body.p_type,body.p_id],'$1,$2')
         else if(fn==='network_summary')result=await call(db,'network_summary',[],'')
         else if(fn==='dashboard_network')result=await call(db,'dashboard_network',[body.p_section,body.p_size],'$1,$2')

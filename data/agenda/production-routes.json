@@ -1,0 +1,16 @@
+{
+  "origin": "https://minha-saude-cyan.vercel.app",
+  "routes": [
+    {
+      "path": "/agenda",
+      "protectedByLogin": true
+    },
+    {
+      "path": "/agenda/00000000-0000-4000-8000-000000000000",
+      "protectedByLogin": true
+    }
+  ],
+  "pageErrors": [],
+  "unauthenticatedPrivateRequests": [],
+  "realUserLoginPerformed": false
+}

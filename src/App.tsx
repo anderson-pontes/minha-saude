@@ -11,6 +11,8 @@ import { Button } from './components/ui/button'
 import { AppLayout } from './components/app-layout'
 import { categories } from './lib/categories'
 import type { Category } from './lib/categories'
+const AgendaPage = lazy(() => import('./pages/agenda').then(module => ({ default: module.AgendaPage })))
+const AppointmentDetailPage = lazy(() => import('./pages/appointment-detail').then(module => ({ default: module.AppointmentDetailPage })))
 const AuthPage = lazy(() => import('./pages/auth').then(module => ({ default: module.AuthPage })))
 const HomePage = lazy(() => import('./pages/home').then(module => ({ default: module.HomePage })))
 const NetworkDirectoryPage = lazy(() => import('./pages/network-directory').then(module => ({ default: module.NetworkDirectoryPage })))
@@ -36,6 +38,7 @@ function NotFound() { return <div className="state"><h1>Página não encontrada<
 const router=createBrowserRouter(createRoutesFromElements(<>
   <Route path="/login" element={<AuthPage/>}/><Route path="/recuperar-senha" element={<AuthPage mode="forgot"/>}/><Route path="/redefinir-senha" element={<AuthPage mode="reset"/>}/>
   <Route element={<PrivateRoute/>}><Route element={<AppLayout clearPrivateCache={clearPrivateCache}/>}><Route index element={<HomePage/>}/>
+    <Route path="/agenda" element={<AgendaPage/>}/><Route path="/agenda/:id" element={<AppointmentDetailPage/>}/>
     <Route path="/cadastros" element={<NetworkDirectoryPage/>}/><Route path="/busca" element={<NetworkDirectoryPage/>}/><Route path="/favoritos" element={<NetworkDirectoryPage favorites/>}/>
     {(Object.keys(categories) as Category[]).flatMap(category=>[
       <Route key={`${category}-list`} path={categories[category].path} element={<NetworkDirectoryPage category={category}/>}/>,

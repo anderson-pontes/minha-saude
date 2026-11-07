@@ -9,9 +9,11 @@ test('production manifest, branded icons and Vercel routing',async({request})=>{
  expect(manifest.icons.some((i:{purpose:string})=>i.purpose==='maskable')).toBe(true)
  const apple=await request.get('/icons/apple-touch-icon.png');expect((await sharp(await apple.body()).metadata()).width).toBe(180)
  const config=JSON.parse(readFileSync('vercel.json','utf8'));const rule=new RegExp(`^${config.rewrites[0].source}$`)
- for(const path of ['/manifest.webmanifest','/sw.js','/icons/pwa-192.png','/assets/main.js'])expect(rule.test(path)).toBe(false)
+ for(const path of ['/manifest.webmanifest','/sw.js','/push-events.js','/icons/pwa-192.png','/assets/main.js'])expect(rule.test(path)).toBe(false)
  expect(rule.test('/estabelecimentos/example')).toBe(true)
  const sw=await request.get('/sw.js');expect(sw.headers()['content-type']).toContain('javascript');expect(sw.headers()['service-worker-allowed']).toBe('/')
+ expect(await sw.text()).toContain('push-events.js')
+ const push=await request.get('/push-events.js');expect(push.headers()['content-type']).toContain('javascript');expect(await push.text()).toContain('notificationclick')
 })
 
 test('service worker caches only static resources and offline shows honest feedback',async({page,context})=>{

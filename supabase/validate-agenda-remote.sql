@@ -1,0 +1,9 @@
+select jsonb_build_object(
+ 'tables',(select jsonb_agg(jsonb_build_object('name',c.relname,'rls',c.relrowsecurity,'force_rls',c.relforcerowsecurity) order by c.relname) from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='public' and c.relname in ('agendamentos','agendamento_lembretes','notificacoes','push_subscriptions','preferencias_notificacao','agendamento_push_entregas')),
+ 'worker_permissions',jsonb_build_object('anonymous',has_function_privilege('anon','public.agenda_process(uuid,uuid,text,text)','EXECUTE'),'authenticated',has_function_privilege('authenticated','public.agenda_process(uuid,uuid,text,text)','EXECUTE'),'service_role',has_function_privilege('service_role','public.agenda_process(uuid,uuid,text,text)','EXECUTE')),
+ 'browser_permissions',jsonb_build_object('insert_reminder',has_table_privilege('authenticated','public.agendamento_lembretes','INSERT'),'insert_notification',has_table_privilege('authenticated','public.notificacoes','INSERT'),'update_read_at',has_column_privilege('authenticated','public.notificacoes','lida_em','UPDATE'),'update_notification_owner',has_column_privilege('authenticated','public.notificacoes','user_id','UPDATE')),
+ 'cron',(select jsonb_build_object('id',jobid,'schedule',schedule,'active',active) from cron.job where jobname='minha-saude-processar-lembretes'),
+ 'cron_runs',(select coalesce(jsonb_agg(r),'[]') from (select status,start_time,end_time from cron.job_run_details where jobid=(select jobid from cron.job where jobname='minha-saude-processar-lembretes') order by runid desc limit 3)r),
+ 'worker_http',(select coalesce(jsonb_agg(r),'[]') from (select status_code,timed_out from net._http_response where content like '%"claimed"%' order by created desc limit 3)r),
+ 'migrations',(select jsonb_agg(version order by version) from supabase_migrations.schema_migrations where version in ('20261107143237','20261107145044','20261107233407'))
+) as agenda_readiness;

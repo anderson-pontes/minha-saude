@@ -42,5 +42,9 @@ for (const [path, size] of [['/icons/pwa-192.png', 192], ['/icons/pwa-512.png', 
     assert.equal(metadata.height, size)
   })
 }
+await check('/push-events.js', /(?:application|text)\/javascript/, body => {
+  assert.match(body.toString(), /notificationclick/)
+  assert.match(body.toString(), /showNotification/)
+})
 console.log(`${failures ? 'FAIL' : 'PASS'} PWA em ${origin}: ${failures} falha(s)`)
 process.exitCode = failures ? 1 : 0

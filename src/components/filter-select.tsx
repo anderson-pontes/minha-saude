@@ -23,10 +23,11 @@ export function FilterSelect({ label, value, onValueChange, options, placeholder
   const trigger = useRef<HTMLButtonElement>(null)
   const input = useRef<HTMLInputElement>(null)
   const [container, setContainer] = useState<HTMLElement | null>(null)
-  const boundary = container?.querySelector('.filter-scroll') ?? undefined
+  const boundary = container?.querySelector('.filter-scroll, .appointment-form-scroll') ?? undefined
   const term = search ?? localSearch
   const visible = onSearchChange ? options : options.filter(o => o.label.toLocaleLowerCase().includes(term.toLocaleLowerCase()))
-  const choices: Option[] = [{ value: '', label: placeholder }, ...visible]
+  const choices: Option[] = clearable ? [{ value: '', label: placeholder }, ...visible] : visible
+  const selectChoices: Option[] = clearable ? [{ value: '', label: placeholder }, ...options] : options
   const name = value ? valueLabel ?? options.find(o => o.value === value)?.label ?? 'Selecionado' : placeholder
   function changeSearch(next: string) { setLocalSearch(next); onSearchChange?.(next); setIndex(0) }
   function changeOpen(next: boolean) {
@@ -61,7 +62,7 @@ export function FilterSelect({ label, value, onValueChange, options, placeholder
     </Popover.Root> : <Select.Root value={`v:${value}`} onValueChange={next => choose(next.slice(2))} open={open} onOpenChange={changeOpen} disabled={disabled}>
       <Select.Trigger ref={trigger} id={id} aria-label={ariaLabel ?? label} className={`filter-select-trigger ${value ? '' : 'is-placeholder'}`}><Select.Value>{name}</Select.Value><Select.Icon>{icon}</Select.Icon></Select.Trigger>
       <Select.Portal container={container}><Select.Content className="filter-select-popup filter-select-conventional" position="popper" align="start" sideOffset={6} collisionPadding={8} collisionBoundary={boundary} onEscapeKeyDown={e => { e.preventDefault(); e.stopPropagation(); changeOpen(false) }}>
-        <Select.Viewport className="filter-select-options">{[{ value: '', label: placeholder }, ...options].map(o => <Select.Item key={o.value} value={`v:${o.value}`} disabled={o.disabled} className="filter-select-option"><Select.ItemText>{o.label}</Select.ItemText><Select.ItemIndicator><Check size={15}/></Select.ItemIndicator></Select.Item>)}</Select.Viewport>{feedback}
+        <Select.Viewport className="filter-select-options">{selectChoices.map(o => <Select.Item key={o.value} value={`v:${o.value}`} disabled={o.disabled} className="filter-select-option"><Select.ItemText>{o.label}</Select.ItemText><Select.ItemIndicator><Check size={15}/></Select.ItemIndicator></Select.Item>)}</Select.Viewport>{feedback}
       </Select.Content></Select.Portal>
     </Select.Root>}{clearable && value && <button type="button" className="filter-select-clear" disabled={disabled} aria-label={`Limpar ${label}`} onClick={() => onValueChange('')}><X size={14}/></button>}
   </div></div>

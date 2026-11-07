@@ -1,0 +1,12 @@
+{
+  "unauthenticatedStatus": 401,
+  "authenticatedStatus": 200,
+  "processing": {
+    "claimed": 0,
+    "internal": 0,
+    "pushAccepted": 0,
+    "failed": 0,
+    "skipped": 0
+  },
+  "recordedAt": "2026-11-07T23:36:03.261Z"
+}

@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/((?!assets/|icons/|favicon\\.svg$|manifest\\.webmanifest$|sw\\.js$|workbox-[^/]+\\.js$|registerSW\\.js$).*)",
+      "source": "/((?!assets/|icons/|favicon\\.svg$|manifest\\.webmanifest$|sw\\.js$|push-events\\.js$|workbox-[^/]+\\.js$|registerSW\\.js$).*)",
       "destination": "/index.html"
     }
   ],
@@ -51,6 +51,13 @@
           "key": "Service-Worker-Allowed",
           "value": "/"
         }
+      ]
+    },
+    {
+      "source": "/push-events.js",
+      "headers": [
+        { "key": "Content-Type", "value": "application/javascript" },
+        { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
       ]
     },
     {

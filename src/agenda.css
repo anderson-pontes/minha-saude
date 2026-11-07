@@ -1,0 +1,110 @@
+﻿.agenda-page,.agenda-detail { max-width:1600px; margin-inline:auto; }
+.agenda-heading-actions,.agenda-period,.agenda-views,.agenda-toolbar,.agenda-pagination { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.agenda-toolbar { justify-content:space-between; margin-bottom:20px; }
+.agenda-period h2 { font-size:18px; margin:0; text-transform:capitalize; }
+.agenda-scope { color:var(--ui-muted); font-size:13px; margin:20px 0 12px; }
+.agenda-metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; max-width:1100px; margin-bottom:24px; }
+.agenda-metric { display:grid; grid-template-columns:24px 1fr; gap:6px 14px; min-height:106px; padding:18px; text-align:left; cursor:pointer; color:var(--ui-primary); }
+.agenda-metric strong { font-size:26px; line-height:1; }
+.agenda-metric span { grid-column:1/-1; color:var(--ui-text); font-size:13px; }
+.agenda-metric:hover { border-color:var(--ui-primary); }
+.agenda-main { padding:24px; }
+.agenda-filter-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; align-items:end; margin-bottom:20px; }
+.agenda-filter-grid .field { margin:0; }
+.agenda-date-range { display:flex; flex-wrap:wrap; gap:14px; margin:0 0 20px; }
+.agenda-date-range label { display:grid; gap:6px; font-size:13px; }
+.agenda-date-range input { height:44px; border:1px solid var(--ui-border); border-radius:10px; padding:8px; background:var(--ui-surface); color:var(--ui-text); min-width:0; }
+.agenda-calendar { min-width:0; font-size:13px; --fc-border-color:var(--ui-border); --fc-today-bg-color:#e7f5f2; --fc-event-border-color:transparent; --fc-event-bg-color:#2563eb; }
+.agenda-calendar .fc-daygrid-day-frame { min-height:112px; }
+.agenda-calendar .fc-col-header-cell-cushion { padding:10px 2px; }
+.agenda-calendar .fc-daygrid-event { cursor:pointer; padding:2px 3px; border-radius:4px; overflow:hidden; }
+.agenda-calendar .fc-event-title { overflow:hidden; text-overflow:ellipsis; }
+.agenda-calendar .fc-daygrid-event-dot { border-color:currentColor; }
+.agenda-calendar .fc-timegrid-event { cursor:pointer; }
+.agenda-calendar .fc-scrollgrid { border-radius:10px; }
+.agenda-calendar .type-consulta { color:#2563eb; }
+.agenda-calendar .type-exame { color:#6d28d9; --fc-event-bg-color:#6d28d9; }
+.agenda-calendar .type-retorno { color:#15803d; --fc-event-bg-color:#15803d; }
+.agenda-calendar .type-procedimento { color:#b45309; --fc-event-bg-color:#b45309; }
+.agenda-calendar .type-vacinacao { color:#0e7490; --fc-event-bg-color:#0e7490; }
+.agenda-calendar .fc-timegrid-event { color:white; background:var(--fc-event-bg-color); }
+.agenda-calendar .event-cancelado,.agenda-calendar .event-realizado { opacity:.65; text-decoration:line-through; }
+.agenda-list h3 { font-size:14px; text-transform:capitalize; margin:24px 0 8px; }
+.appointment-row { display:flex; gap:14px; align-items:center; padding:16px 0; border-bottom:1px solid var(--ui-border); min-width:0; color:var(--ui-text); }
+.appointment-row>time { display:grid; text-align:center; border-radius:10px; background:var(--ui-primary-subtle); color:var(--ui-primary); padding:8px; width:52px; flex-shrink:0; }
+.appointment-row>time strong { font-size:22px; line-height:1.1; }
+.appointment-row>time span { font-size:11px; text-transform:uppercase; }
+.appointment-row>div { display:grid; gap:3px; flex:1; min-width:0; }
+.appointment-row>div>strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:14px; }
+.appointment-row>div>span { font-size:12px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.appointment-kind { color:var(--ui-muted); }
+.appointment-status { border-radius:20px; padding:5px 9px; font-size:11px; background:var(--ui-primary-subtle); color:var(--ui-primary-hover); white-space:nowrap; }
+.status-cancelado,.status-nao_compareceu { color:#9f1239; background:#fff1f2; }
+.status-realizado { color:#166534; background:#f0fdf4; }
+.agenda-empty { display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; padding:32px 12px; }
+.agenda-empty p,.agenda-empty h3 { margin:0; }
+.agenda-calendar-skeleton { min-height:360px; border-radius:10px; background:linear-gradient(110deg,#f6f8fb 25%,#e7f5f2 50%,#f6f8fb 75%); padding:30px; }
+.agenda-upcoming { margin-top:24px; padding:20px 24px; max-width:1100px; }
+.agenda-upcoming .section-title { margin:0; }
+.agenda-upcoming h2,.agenda-detail h2 { font-size:18px; display:flex; align-items:center; gap:8px; }
+.agenda-upcoming>p { font-size:13px; color:var(--ui-muted); }
+.agenda-pagination { justify-content:flex-end; margin-top:18px; }
+.appointment-dialog[open] { display:flex; flex-direction:column; padding:0; width:min(800px,calc(100vw - 24px)); max-height:calc(100dvh - 24px); overflow:hidden; }
+.appointment-dialog>.section-title { margin:0; padding:18px 24px; border-bottom:1px solid var(--ui-border); flex-shrink:0; }
+.appointment-dialog h2 { font-size:20px; }
+.appointment-dialog>form { display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+.appointment-form-scroll { overflow-y:auto; overscroll-behavior:contain; padding:16px 24px 24px; min-height:0; }
+.appointment-form-scroll>section { border-bottom:1px solid var(--ui-border); padding:10px 0 22px; }
+.appointment-form-scroll h3 { font-size:15px; margin:14px 0; }
+.appointment-form-scroll p,.appointment-form-scroll small { font-size:13px; color:var(--ui-muted); }
+.appointment-form-scroll .field>label { font-size:13px; font-weight:600; }
+.appointment-form-scroll input:not([type=checkbox]),.appointment-form-scroll textarea { box-sizing:border-box; width:100%; min-width:0; border:1px solid var(--ui-border); border-radius:10px; padding:10px; min-height:44px; color:var(--ui-text); background:var(--ui-surface); font:inherit; font-size:14px; }
+.appointment-form-footer { padding:16px 24px; border-top:1px solid var(--ui-border); flex-shrink:0; background:var(--ui-surface); }
+.appointment-form-footer>div { display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; }
+.appointment-form-footer p { margin:0 0 10px; font-size:13px; }
+.appointment-form-footer [role=alert]>p { width:100%; }
+.reminder-options { display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:13px; }
+.reminder-options label { display:flex; align-items:center; gap:8px; min-height:32px; }
+.reminder-options input { width:18px; height:18px; accent-color:var(--ui-primary); }
+.agenda-custom-reminder { display:grid; grid-template-columns:1fr auto; gap:8px; margin-top:16px; }
+.agenda-custom-reminder label { grid-column:1/-1; font-size:13px; }
+.agenda-suggestions,.agenda-location { border-radius:10px; background:var(--ui-background); padding:12px; margin-top:12px; font-size:13px; overflow-wrap:anywhere; }
+.agenda-suggestions .button { margin:4px; }
+.agenda-detail-columns { display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:20px; }
+.agenda-detail-columns .panel { padding:24px; }
+.agenda-detail-columns aside { display:grid; gap:16px; align-content:start; }
+.agenda-detail dl>div { padding:12px 0; border-bottom:1px solid var(--ui-border); }
+.agenda-detail dt { font-size:12px; color:var(--ui-muted); margin-bottom:5px; }
+.agenda-detail dd { margin:0; font-size:14px; white-space:pre-wrap; overflow-wrap:anywhere; }
+.agenda-actions { display:grid; gap:10px; }
+.agenda-actions h2 { margin:0 0 6px; }
+.agenda-preferences { width:min(580px,calc(100vw - 24px)); }
+.agenda-preferences .field { margin:14px 0; }
+.agenda-preferences .check-label { margin:12px 0; }
+.agenda-push-settings { margin:18px 0; font-size:13px; }
+.agenda-push-settings .button { margin-top:8px; width:100%; }
+.notification-bell { position:relative; width:44px; padding:8px; }
+.notification-counter { position:absolute; right:0; top:0; background:var(--ui-primary); color:white; border-radius:12px; min-width:18px; height:18px; padding:1px 4px; font-size:10px; }
+.notifications-dialog { width:min(560px,calc(100vw - 24px)); }
+.notification-tools { display:flex; flex-wrap:wrap; gap:8px; }
+.notifications-list article { padding:18px 8px; border-bottom:1px solid var(--ui-border); font-size:13px; }
+.notifications-list article>div { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+.notifications-list time { color:var(--ui-muted); font-size:12px; }
+.notifications-list .is-unread { background:var(--ui-primary-subtle); }
+@media(max-width:1023px) { .agenda-filter-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .agenda-detail-columns { grid-template-columns:1fr; } }
+@media(max-width:639px) {
+ .agenda-main { padding:16px 12px; } .agenda-heading-actions { width:100%; } .agenda-heading-actions>.button { flex:1; }
+ .agenda-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } .agenda-metric { padding:14px; min-height:100px; }
+ .agenda-filter-grid { grid-template-columns:1fr; } .agenda-period { gap:2px; justify-content:space-between; width:100%; } .agenda-period h2 { font-size:14px; }
+ .agenda-views { width:100%; } .agenda-views .button { flex:1; padding-inline:8px; }
+ .agenda-upcoming { padding:16px; } .agenda-upcoming .section-title { align-items:flex-start; gap:8px; flex-wrap:wrap; }
+ .appointment-row { gap:8px; flex-wrap:wrap; } .appointment-row>div { flex-basis:60%; } .appointment-row>.appointment-status { margin-left:60px; }
+ .appointment-dialog[open] { width:calc(100vw - 12px); max-height:calc(100dvh - 12px); border-radius:14px; }
+ .appointment-dialog>.section-title { padding:16px; } .appointment-form-scroll { padding:12px 16px 20px; } .appointment-form-footer { padding:12px 16px; }
+ .appointment-form-footer .button { flex:1; } .reminder-options { grid-template-columns:1fr; }
+ .agenda-calendar { font-size:11px; } .agenda-calendar .fc-daygrid-day-frame { min-height:90px; } .agenda-calendar .fc-daygrid-event { font-size:10px; }
+ .agenda-detail-columns .panel { padding:18px; }
+ .header .account { gap:0; } .header .avatar { display:none; }
+}
+.agenda-toast { position:fixed; bottom:24px; right:24px; z-index:30; display:flex; align-items:center; gap:10px; max-width:min(440px,calc(100vw - 32px)); padding:12px 14px; border:1px solid var(--ui-primary); border-radius:12px; background:var(--ui-surface); color:var(--ui-primary-hover); box-shadow:var(--ui-shadow-hover); font-size:13px; }
+.agenda-toast>span { flex:1; } .agenda-toast>svg { flex-shrink:0; } .agenda-toast .button { min-width:36px; min-height:36px; padding:6px; }

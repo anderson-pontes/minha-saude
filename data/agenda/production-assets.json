@@ -1,0 +1,280 @@
+{
+  "origin": "https://minha-saude-cyan.vercel.app",
+  "recorded_at": "2026-11-07T23:48:06.599Z",
+  "staticFilesChecked": 45,
+  "checks": [
+    {
+      "path": "/assets/admin-users-CwHSjH4G.js",
+      "status": 200,
+      "durationMs": 722,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/agenda-BOQQjdP6.js",
+      "status": 200,
+      "durationMs": 757,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/agenda-upcoming-ClNz1e_o.js",
+      "status": 200,
+      "durationMs": 708,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/appointment-detail-DHFRWu17.js",
+      "status": 200,
+      "durationMs": 733,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/appointment-form-DRE9xS_H.js",
+      "status": 200,
+      "durationMs": 707,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/arrow-left-bywwCWS6.js",
+      "status": 200,
+      "durationMs": 218,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/arrow-right-CX3UM5EF.js",
+      "status": 200,
+      "durationMs": 355,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/auth-B-qMWp5n.js",
+      "status": 200,
+      "durationMs": 231,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/auth-DsDI_Dan.js",
+      "status": 200,
+      "durationMs": 231,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/chevron-down-PEX6u0rb.js",
+      "status": 200,
+      "durationMs": 348,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/entity-detail-D2rRSTcd.js",
+      "status": 200,
+      "durationMs": 219,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/entity-form-D60RJX-p.js",
+      "status": 200,
+      "durationMs": 221,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/filter-combobox-BNsG-QNL.js",
+      "status": 200,
+      "durationMs": 298,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/home-Ba9Mkw6E.js",
+      "status": 200,
+      "durationMs": 220,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/index-BVuf_pGr.js",
+      "status": 200,
+      "durationMs": 412,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/index-miycoN9o.css",
+      "status": 200,
+      "durationMs": 226,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-400-normal-C38fXH4l.woff2",
+      "status": 200,
+      "durationMs": 213,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-400-normal-CyCys3Eg.woff",
+      "status": 200,
+      "durationMs": 225,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-500-normal-BL9OpVg8.woff",
+      "status": 200,
+      "durationMs": 215,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-500-normal-Cerq10X2.woff2",
+      "status": 200,
+      "durationMs": 214,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-600-normal-CiBQ2DWP.woff",
+      "status": 200,
+      "durationMs": 228,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-600-normal-LgqL8muc.woff2",
+      "status": 200,
+      "durationMs": 227,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-700-normal-BLAVimhd.woff",
+      "status": 200,
+      "durationMs": 220,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-700-normal-Yt3aPRUw.woff2",
+      "status": 200,
+      "durationMs": 226,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/map-pin-D0_EACgi.js",
+      "status": 200,
+      "durationMs": 222,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/network-B-Lxqgxn.js",
+      "status": 200,
+      "durationMs": 253,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/network-directory-CCIZANvd.js",
+      "status": 200,
+      "durationMs": 211,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/network-DPl67suD.js",
+      "status": 200,
+      "durationMs": 232,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/plus-Dlde4yEp.js",
+      "status": 200,
+      "durationMs": 211,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/registration-type-picker-DCHzuDuK.js",
+      "status": 200,
+      "durationMs": 351,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/search-kIPWZYx7.js",
+      "status": 200,
+      "durationMs": 218,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/smartphone-DkI0w69m.js",
+      "status": 200,
+      "durationMs": 219,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/supabase-abkAp3tq.js",
+      "status": 200,
+      "durationMs": 269,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/workbox-window.prod.es5-Bd17z0YL.js",
+      "status": 200,
+      "durationMs": 251,
+      "hashMatches": true
+    },
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "durationMs": 216,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons/apple-touch-icon.png",
+      "status": 200,
+      "durationMs": 215,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons/pwa-192.png",
+      "status": 200,
+      "durationMs": 75,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons/pwa-512.png",
+      "status": 200,
+      "durationMs": 72,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons/pwa-maskable-512.png",
+      "status": 200,
+      "durationMs": 218,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons.svg",
+      "status": 200,
+      "durationMs": 214,
+      "hashMatches": true
+    },
+    {
+      "path": "/index.html",
+      "status": 200,
+      "durationMs": 75,
+      "hashMatches": true
+    },
+    {
+      "path": "/manifest.webmanifest",
+      "status": 200,
+      "durationMs": 73,
+      "hashMatches": true
+    },
+    {
+      "path": "/push-events.js",
+      "status": 200,
+      "durationMs": 388,
+      "hashMatches": true
+    },
+    {
+      "path": "/sw.js",
+      "status": 200,
+      "durationMs": 121,
+      "hashMatches": true
+    },
+    {
+      "path": "/workbox-98f7a950.js",
+      "status": 200,
+      "durationMs": 214,
+      "hashMatches": true
+    }
+  ],
+  "loginRendered": true,
+  "pageErrors": [],
+  "realUserLoginPerformed": false
+}

@@ -1,0 +1,86 @@
+{
+  "browser_permissions": {
+    "insert_notification": false,
+    "insert_reminder": false,
+    "update_notification_owner": false,
+    "update_read_at": true
+  },
+  "cron": {
+    "active": true,
+    "id": 1,
+    "schedule": "* * * * *"
+  },
+  "cron_runs": [
+    {
+      "end_time": "2026-11-07T23:35:00.019484+00:00",
+      "start_time": "2026-11-07T23:35:00.015941+00:00",
+      "status": "succeeded"
+    },
+    {
+      "end_time": "2026-11-07T23:34:00.030902+00:00",
+      "start_time": "2026-11-07T23:34:00.024546+00:00",
+      "status": "succeeded"
+    },
+    {
+      "end_time": "2026-11-07T23:33:00.017032+00:00",
+      "start_time": "2026-11-07T23:33:00.013772+00:00",
+      "status": "succeeded"
+    }
+  ],
+  "migrations": [
+    "20261107143237",
+    "20261107145044",
+    "20261107233407"
+  ],
+  "tables": [
+    {
+      "force_rls": true,
+      "name": "agendamento_lembretes",
+      "rls": true
+    },
+    {
+      "force_rls": true,
+      "name": "agendamento_push_entregas",
+      "rls": true
+    },
+    {
+      "force_rls": true,
+      "name": "agendamentos",
+      "rls": true
+    },
+    {
+      "force_rls": true,
+      "name": "notificacoes",
+      "rls": true
+    },
+    {
+      "force_rls": true,
+      "name": "preferencias_notificacao",
+      "rls": true
+    },
+    {
+      "force_rls": true,
+      "name": "push_subscriptions",
+      "rls": true
+    }
+  ],
+  "worker_http": [
+    {
+      "status_code": 200,
+      "timed_out": false
+    },
+    {
+      "status_code": 200,
+      "timed_out": false
+    },
+    {
+      "status_code": 200,
+      "timed_out": false
+    }
+  ],
+  "worker_permissions": {
+    "anonymous": false,
+    "authenticated": false,
+    "service_role": true
+  }
+}

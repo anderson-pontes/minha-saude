@@ -10,6 +10,8 @@ test.beforeEach(async ({ page }) => {
     if (url.includes('/rpc/network_summary')) return route.fulfill({ json: { establishments:0,doctors:0,specialties:0,health_plans:0 } })
     if ((url.includes('/rpc/search_network')||url.includes('/rpc/browse_network'))) return route.fulfill({ json: {items:[],total:0} })
     if (url.includes('/rpc/dashboard_network')) return route.fulfill({ json: {items:[],total:0} })
+    if (url.includes('/rpc/agenda_upcoming')) return route.fulfill({json:{items:[],week_count:0}})
+    if (url.includes('/rpc/agenda_notifications')) return route.fulfill({json:{items:[],total:0,unread:0}})
     if (url.includes('/rest/')) return route.fulfill({ json: [] })
     return route.fulfill({ json: {} })
   })

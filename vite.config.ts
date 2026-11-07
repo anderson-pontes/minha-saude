@@ -6,6 +6,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Generated test JavaScript and operational artifacts must not reload an open form.
+  server: { watch: { ignored: ['**/test-results/**','**/playwright-report/**','**/data/**','**/scripts/**','**/tests/**','**/tests-pwa/**','**/tests-edge/**','**/supabase/**','**/.vercel/**'] } },
   build: {
     rolldownOptions: {
       output: {
@@ -22,7 +24,7 @@ export default defineConfig({
     manifest: { id:'/', name:'Minha Saúde', short_name:'Minha Saúde', description:'Sua rede pessoal de clínicas, hospitais e médicos.', start_url:'/', scope:'/', display:'standalone', background_color:'#F8FAFC', theme_color:'#0F766E', lang:'pt-BR',
       icons:[{src:'/icons/pwa-192.png',sizes:'192x192',type:'image/png',purpose:'any'},{src:'/icons/pwa-512.png',sizes:'512x512',type:'image/png',purpose:'any'},{src:'/icons/pwa-maskable-512.png',sizes:'512x512',type:'image/png',purpose:'maskable'}],
     },
-    workbox: { cleanupOutdatedCaches:true, navigateFallback:'/index.html', globPatterns:['**/*.{js,css,html,png,svg,woff,woff2,webmanifest}'],
+    workbox: { importScripts:['/push-events.js'], cleanupOutdatedCaches:true, navigateFallback:'/index.html', globPatterns:['**/*.{js,css,html,png,svg,woff,woff2,webmanifest}'],
       runtimeCaching:[{urlPattern:/^https:\/\/[^/]+\.supabase\.co\//i,handler:'NetworkOnly',options:{fetchOptions:{cache:'no-store'}}}],
     },
     devOptions:{enabled:false},

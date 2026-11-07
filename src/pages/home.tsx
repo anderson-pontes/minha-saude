@@ -1,3 +1,4 @@
+import { UpcomingAppointments } from '../components/agenda-upcoming'
 import { PwaInstallPrompt } from '../components/pwa'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -40,6 +41,7 @@ export function HomePage() {
       return <Link key={key} to={categories[key].path} className="quick-card"><span className={`category-icon ${['teal','blue','purple','cyan'][index]}`}><Icon size={22}/></span><ArrowRight className="card-arrow" size={18}/><h3>{categories[key].title}</h3><span className="record-count">{counts.data ? `${counts.data[key]} registros` : 'Consultar registros'}</span></Link>
     })}</div>
     {counts.isError && <QueryError error={counts.error} retry={() => void counts.refetch()}/>}
+    <UpcomingAppointments/>
     <section aria-labelledby="favorites-title"><div className="section-title"><h2 id="favorites-title">Seus favoritos</h2><Link className="teal-text" to="/favoritos">Ver todos →</Link></div>
       <DashboardContent query={favorites} section="favorites" empty={<div className="panel"><Empty title="Você ainda não adicionou favoritos." description="Marque o coração de um contato para acessá-lo rapidamente aqui."/><Button asChild variant="ghost" className="full"><Link to="/cadastros">Encontrar um contato<ArrowRight size={15}/></Link></Button></div>}>
         {data => <div className="network-grid">{data.items.map(({ category, data }) => <EntityCard key={data.id} category={category} entity={data}/>)}</div>}
