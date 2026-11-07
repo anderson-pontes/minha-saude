@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'
 import { chromium } from '@playwright/test'
 const origin='https://minha-saude-cyan.vercel.app'
 const directory=process.argv[2]||'data/dashboard-performance'
-if(!['data/dashboard-performance','data/network-explorer','data/product-design'].includes(directory))throw new Error('Unsupported report directory')
+if(!['data/dashboard-performance','data/network-explorer','data/product-design','data/filter-selects'].includes(directory))throw new Error('Unsupported report directory')
 const inputs=JSON.parse(readFileSync(`${directory}/deployment-inputs.json`,'utf8'))
 const checks=[]
 for(let offset=0;offset<inputs.files.length;offset+=5){

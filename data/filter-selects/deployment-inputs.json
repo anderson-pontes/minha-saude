@@ -1,0 +1,149 @@
+{
+  "project": "minha-saude",
+  "method": "Static-only Build Output API v3; no new project or bypass secret",
+  "files": [
+    {
+      "path": "assets/admin-users-Dp91qwj6.js",
+      "sha256": "28489dc9cc8bea9bb2037848c6bae2f419fca384a635ab4dbe0fa9830e2c00c3"
+    },
+    {
+      "path": "assets/arrow-left-B0iGzM-W.js",
+      "sha256": "9b20d3a4f3af23f3a6ef651d7fa25468e8df405662324805391c679771b9d4b3"
+    },
+    {
+      "path": "assets/arrow-right-z8wPa4_-.js",
+      "sha256": "31c28b2db376e42f513300633fe11d08be3c8433310a9deb1e01cb0769d148e0"
+    },
+    {
+      "path": "assets/auth-ret98GdH.js",
+      "sha256": "1c848494b6f3415c6803f278e80b6efc1d780468b79a1144b78928a2f4b50df5"
+    },
+    {
+      "path": "assets/chevron-down-qqJAJMxH.js",
+      "sha256": "32a5d30f6463aa4b42f0cf0e6dec4ca3af8501aaca5ff77bd2fe655e6f8ae101"
+    },
+    {
+      "path": "assets/entity-detail-BSI2pI7O.js",
+      "sha256": "af9214f89303422358793ba7a5ccf58670ef5598f06c1abed94a14545a247bd3"
+    },
+    {
+      "path": "assets/entity-form-Bp6UsGts.js",
+      "sha256": "164b90457ccddd58acc8ce8cc6e28dfb143e8b19f72f2469d16b0978706ced6d"
+    },
+    {
+      "path": "assets/home-BTvopyxM.js",
+      "sha256": "cac19df3e693fe10e2a358edb7d9921c57e29b3bc4cda0b9195a90fa8832e1e9"
+    },
+    {
+      "path": "assets/index-BdaoEQ5v.css",
+      "sha256": "7786a213b36e46bdc5c6fdbc0ea26633afdfadd67da14cdc195b65947d1059ca"
+    },
+    {
+      "path": "assets/index-NWuW-ljf.js",
+      "sha256": "9f051f612f731750e92fb6098c9efa12e4bcd19f1f648d18a35a0cdc7b29ee3a"
+    },
+    {
+      "path": "assets/inter-latin-400-normal-C38fXH4l.woff2",
+      "sha256": "8909904ab6c872eb994093482a88a28eca2cd95912d7b6fecd72103b0dc07edc"
+    },
+    {
+      "path": "assets/inter-latin-400-normal-CyCys3Eg.woff",
+      "sha256": "e20fa0b4fd2dd26e4d14b3ac3cc922509c3a63fa5e910e90c614544aa042dd45"
+    },
+    {
+      "path": "assets/inter-latin-500-normal-BL9OpVg8.woff",
+      "sha256": "9b42c108da48b5ed55a3072e815ffee2d271562e6c0dd6998910e8f9c09e0a3d"
+    },
+    {
+      "path": "assets/inter-latin-500-normal-Cerq10X2.woff2",
+      "sha256": "f3779f1efccc4bdcdf9c0a02ab95bf6bd092ed09c48c08cedc725889edd1d19f"
+    },
+    {
+      "path": "assets/inter-latin-600-normal-CiBQ2DWP.woff",
+      "sha256": "6a9cb3a509b4eeaf12b7dda6c4aacac3e85d07f4201bf4dd716e332e692b87bd"
+    },
+    {
+      "path": "assets/inter-latin-600-normal-LgqL8muc.woff2",
+      "sha256": "f9a06e79cd3a2a20951c0f0e28f66dd0e6d3fda73911d640a2125c8fcb78f21a"
+    },
+    {
+      "path": "assets/inter-latin-700-normal-BLAVimhd.woff",
+      "sha256": "7c5ed5655730de337704d3fc94628515cd7e3d8d32368871709bf56ac0397e7a"
+    },
+    {
+      "path": "assets/inter-latin-700-normal-Yt3aPRUw.woff2",
+      "sha256": "6f56409fd3d64bb85f7d070bce20749db2d66b6d63cec586cc22d1c761be2491"
+    },
+    {
+      "path": "assets/network-directory-BvPfKK4w.js",
+      "sha256": "923061897200925d51fa6eff75d63700806b3933a93a3b1ea3c574c7c821fe91"
+    },
+    {
+      "path": "assets/network-DLkcZXeY.js",
+      "sha256": "e14c91f1cbff930b68ae5a9b922a24bb676ab05486b4c0ed6a331bdcfff8d7e5"
+    },
+    {
+      "path": "assets/registration-type-picker-B4VgMdP1.js",
+      "sha256": "5258ada8dbc4561a61854521a81fb09ce7fff0524da9e4a8ae7361bd4a1b1da0"
+    },
+    {
+      "path": "assets/search-CddAIhia.js",
+      "sha256": "9a4e13da7e963e3c7d29e376b4a4ac974df6364ac62649ac0efbb5b65277825c"
+    },
+    {
+      "path": "assets/smartphone-DWpiLQ10.js",
+      "sha256": "07d0b3f6a07a49eb27e64a7b4ff887f47f7cc0677915432aebaad0296c9c1937"
+    },
+    {
+      "path": "assets/supabase-abkAp3tq.js",
+      "sha256": "12bbaeaa3f735640064197a547ff1b0012f5241ce18ef74e761f3aabc81d45d4"
+    },
+    {
+      "path": "assets/workbox-window.prod.es5-Bd17z0YL.js",
+      "sha256": "17bcc17d60dc78f927834b880c39649b03af46fd1f5cdbb8c42c5ae2b515dce9"
+    },
+    {
+      "path": "favicon.svg",
+      "sha256": "9d653fbc0f7ba35cae0d01a2ea108995c9191aa77365e2e4d9911b53395e0a7b"
+    },
+    {
+      "path": "icons/apple-touch-icon.png",
+      "sha256": "4e9ba85b6221fe7056d48e63702a228eb087e0dd36c62bfb0f189452dd1d159c"
+    },
+    {
+      "path": "icons/pwa-192.png",
+      "sha256": "b1cdf9cd36b321480177d31fd66b13d21b42ee8129c752da5c409a1f0526c893"
+    },
+    {
+      "path": "icons/pwa-512.png",
+      "sha256": "8e49e354b37369ccaac1d1b0306bc6de4044fdef803b6a2c53134fcdfc9993ae"
+    },
+    {
+      "path": "icons/pwa-maskable-512.png",
+      "sha256": "3625665fd19bba7bcebece29d1013230428a3e57f1e527bf5f2298c469b6bc25"
+    },
+    {
+      "path": "icons.svg",
+      "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a"
+    },
+    {
+      "path": "index.html",
+      "sha256": "5eef82a1f3682785b31cb1d447ca7c15a375d93b36b44dd35ab7046c12cb9d86"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "3460e0678529be0416232e8b4bab75948c40d560a3c5643f7938595f601e3ed8"
+    },
+    {
+      "path": "sw.js",
+      "sha256": "b7099f2983706a7d86d46e1101fd9f796ba44501e93036d68b45239152157910"
+    },
+    {
+      "path": "workbox-98f7a950.js",
+      "sha256": "88acfaf2e6002d02e23ab85ef645056d8d44f9d16c6e377074cc952e50f07434"
+    }
+  ],
+  "supabase_project_verified": true,
+  "provider_data_included": false,
+  "env_files_included": false
+}

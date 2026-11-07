@@ -58,7 +58,7 @@ for(const width of [360,390,430,768,1440])test(`complete establishment workflow 
   await expect(page.getByRole('article').filter({has:page.getByRole('heading',{name:'Hospital atualizado',exact:true})})).toBeVisible()
   await page.getByLabel('Busca universal').fill('LUCIA');await page.getByRole('button',{name:'Buscar',exact:true}).click()
   await expect(page.getByRole('article').filter({has:page.getByRole('heading',{name:'Hospital atualizado',exact:true})})).toBeVisible()
-  await page.getByRole('button',{name:/Filtros/}).click();await page.getByLabel('Cidade',{exact:true}).fill('sao paulo');await page.getByRole('option',{name:/^S.o Paulo$/}).click();await page.getByRole('button',{name:'Aplicar filtros'}).click()
+  await page.getByRole('button',{name:/Filtros/}).click();await page.getByRole('combobox',{name:'Cidade',exact:true}).click();await page.getByRole('combobox',{name:'Pesquisar Cidade',exact:true}).fill('sao paulo');await page.getByRole('option',{name:/^S.o Paulo$/}).click();await page.getByRole('button',{name:'Aplicar filtros'}).click()
   await expect(page).toHaveURL(/city=S/);await expect(page.getByRole('article').filter({has:page.getByRole('heading',{name:'Hospital atualizado',exact:true})})).toBeVisible()
   await noOverflow(page);await page.screenshot({path:`test-results/phase2-network-${width}.png`,fullPage:true})
   await page.goto(detailURL);await page.getByRole('button',{name:'Excluir Hospital atualizado',exact:true}).click()

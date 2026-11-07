@@ -5,13 +5,13 @@
       "path": "/rest/v1/rpc/dashboard_network",
       "section": "recent",
       "status": 200,
-      "durationMs": 31
+      "durationMs": 21
     },
     {
       "path": "/rest/v1/rpc/dashboard_network",
       "section": "favorites",
       "status": 200,
-      "durationMs": 21
+      "durationMs": 17
     }
   ]
 }
