@@ -1,0 +1,20 @@
+{
+  "browser": {
+    "environment": "Isolated Edge, controlled Auth, actual local PostgreSQL functions behind HTTP routes",
+    "unique_scenarios_verified": 49,
+    "full_run": {"passed": 48, "capture_timeout": 1},
+    "capture_resolution": "All functional assertions passed; Edge full-page screenshot stalled after a rapid route round-trip. Kept every assertion and captured the visible viewport with animations disabled. Isolated rerun passed.",
+    "final_targeted_run": {"passed": 7, "failed": 0},
+    "viewports": [390, 768, 1440],
+    "additional_existing_workflow_viewports": [360, 430],
+    "plan_pages_call_full_document_rpc": false
+  },
+  "pwa": {"passed": 6, "browsers": ["Edge", "Chrome"]},
+  "sql": {"foundation": "passed", "phase2": "passed", "shared_access": "passed", "dashboard": "passed", "explorer": "passed", "unicasf_full_import_and_reimport": "passed"},
+  "parser": {"passed": 4},
+  "contact_utilities": "passed",
+  "lint": "passed",
+  "typescript": "passed",
+  "production_build": "passed",
+  "real_user_production_login_automated": false
+}

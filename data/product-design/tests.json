@@ -1,0 +1,45 @@
+{
+  "browser_scenarios_unique": 62,
+  "complete_suite": {
+    "passed": 61,
+    "failed": 0
+  },
+  "final_targeted_suite": {
+    "passed": 14,
+    "failed": 0
+  },
+  "additional_volume_test": {
+    "records": 2000,
+    "requested_page_size": 12,
+    "passed": true
+  },
+  "pwa": {
+    "passed": 6,
+    "browsers": [
+      "Edge",
+      "Chrome"
+    ]
+  },
+  "viewports": [
+    360,
+    390,
+    768,
+    1024,
+    1280,
+    1440,
+    1920,
+    2560
+  ],
+  "native_zoom": [
+    1.25,
+    1.5,
+    2
+  ],
+  "lint": "passed",
+  "typescript": "passed",
+  "production_build": "passed",
+  "new_dependencies": 0,
+  "database_changes": false,
+  "api_changes": false,
+  "real_user_production_login_automated": false
+}

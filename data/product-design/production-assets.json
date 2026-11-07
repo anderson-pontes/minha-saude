@@ -1,0 +1,220 @@
+{
+  "origin": "https://minha-saude-cyan.vercel.app",
+  "recorded_at": "2026-11-07T00:29:09.421Z",
+  "staticFilesChecked": 35,
+  "checks": [
+    {
+      "path": "/assets/admin-users-BVEOTD2s.js",
+      "status": 200,
+      "durationMs": 740,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/arrow-left-BtNYyDKx.js",
+      "status": 200,
+      "durationMs": 1030,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/arrow-right-D-gZx-oI.js",
+      "status": 200,
+      "durationMs": 724,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/auth-N0TDQitB.js",
+      "status": 200,
+      "durationMs": 760,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/chevron-down-D8Dg9h8P.js",
+      "status": 200,
+      "durationMs": 706,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/entity-detail-t8Rxvq5N.js",
+      "status": 200,
+      "durationMs": 366,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/entity-form-BJBl5nRm.js",
+      "status": 200,
+      "durationMs": 395,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/home-DxsuzQqH.js",
+      "status": 200,
+      "durationMs": 216,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/index-B2YJDEDH.js",
+      "status": 200,
+      "durationMs": 268,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/index-C8GAO4aA.css",
+      "status": 200,
+      "durationMs": 363,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-400-normal-C38fXH4l.woff2",
+      "status": 200,
+      "durationMs": 215,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-400-normal-CyCys3Eg.woff",
+      "status": 200,
+      "durationMs": 213,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-500-normal-BL9OpVg8.woff",
+      "status": 200,
+      "durationMs": 218,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-500-normal-Cerq10X2.woff2",
+      "status": 200,
+      "durationMs": 214,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-600-normal-CiBQ2DWP.woff",
+      "status": 200,
+      "durationMs": 225,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-600-normal-LgqL8muc.woff2",
+      "status": 200,
+      "durationMs": 211,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-700-normal-BLAVimhd.woff",
+      "status": 200,
+      "durationMs": 222,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/inter-latin-700-normal-Yt3aPRUw.woff2",
+      "status": 200,
+      "durationMs": 214,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/network-B-XNvCCA.js",
+      "status": 200,
+      "durationMs": 270,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/network-directory-Dd0PXfKI.js",
+      "status": 200,
+      "durationMs": 218,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/registration-type-picker-6U2j2lNR.js",
+      "status": 200,
+      "durationMs": 211,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/search-EWx7B_BK.js",
+      "status": 200,
+      "durationMs": 216,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/smartphone-Dpgu9bcC.js",
+      "status": 200,
+      "durationMs": 216,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/supabase-Bwm3Z89P.js",
+      "status": 200,
+      "durationMs": 220,
+      "hashMatches": true
+    },
+    {
+      "path": "/assets/workbox-window.prod.es5-Bd17z0YL.js",
+      "status": 200,
+      "durationMs": 223,
+      "hashMatches": true
+    },
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "durationMs": 208,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons/apple-touch-icon.png",
+      "status": 200,
+      "durationMs": 209,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons/pwa-192.png",
+      "status": 200,
+      "durationMs": 214,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons/pwa-512.png",
+      "status": 200,
+      "durationMs": 214,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons/pwa-maskable-512.png",
+      "status": 200,
+      "durationMs": 218,
+      "hashMatches": true
+    },
+    {
+      "path": "/icons.svg",
+      "status": 200,
+      "durationMs": 214,
+      "hashMatches": true
+    },
+    {
+      "path": "/index.html",
+      "status": 200,
+      "durationMs": 214,
+      "hashMatches": true
+    },
+    {
+      "path": "/manifest.webmanifest",
+      "status": 200,
+      "durationMs": 220,
+      "hashMatches": true
+    },
+    {
+      "path": "/sw.js",
+      "status": 200,
+      "durationMs": 471,
+      "hashMatches": true
+    },
+    {
+      "path": "/workbox-98f7a950.js",
+      "status": 200,
+      "durationMs": 222,
+      "hashMatches": true
+    }
+  ],
+  "loginRendered": true,
+  "pageErrors": [],
+  "realUserLoginPerformed": false
+}

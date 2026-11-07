@@ -8,9 +8,12 @@ export function Dialog({ title, children, close, className = '', dismissOnOutsid
   useEffect(() => {
     const dialog=ref.current!
     if (!opener.current && document.activeElement instanceof HTMLElement && !dialog.contains(document.activeElement)) opener.current=document.activeElement
+    const previousOverflow=document.body.style.overflow
+    document.body.style.overflow='hidden'
     dialog.showModal()
     return () => {
       dialog.close()
+      document.body.style.overflow=previousOverflow
       queueMicrotask(() => {
         const modal=document.querySelector('dialog[open]')
         if (opener.current?.isConnected && (!modal || modal.contains(opener.current))) opener.current.focus({preventScroll:true})

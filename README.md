@@ -4,6 +4,8 @@ Rede pessoal de saúde em React, TypeScript, Vite, Tailwind e Supabase. A raiz d
 
 ## Estado atual
 
+**Dashboard corrigido e publicado em 05/11/2026.** Consultas do banco passaram de aproximadamente seis segundos para 6–13 ms em média, com respostas compactas, cache, cancelamento e estados independentes por seção. [Diagnóstico, medições e validação da publicação](DASHBOARD-PERFORMANCE-REPORT.md).
+
 Revisão de 03/11/2026: dependências moderadas corrigidas, telas sob demanda, bundle principal de 407 kB e verificações locais aprovadas. Consulte [o registro da conclusão local](PROJECT-STATUS-2026-11-03.md).
 
 **Acesso compartilhado aplicado no Supabase e primeiro administrador ativado em 03/11/2026.** A migração remota `20261104015446_shared_access` e os testes PostgreSQL com rollback foram concluídos. Consulte [o registro da aplicação](SHARED-ACCESS-APPLIED-2026-11-03.md). **A publicação do frontend/PWA na Vercel ainda está pendente**, assim como validações com login Auth real e dispositivos físicos.

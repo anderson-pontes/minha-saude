@@ -25,8 +25,14 @@ export const test=base.extend<{ db:PGlite }>({
         else if(fn==='admin_set_access')result=await call(db,'admin_set_access',[body.p_id,body.p_role,body.p_status],'$1,$2,$3')
         else if(fn==='save_network_entity')result=await call(db,'save_network_entity',[body.p_type,body.p_id,JSON.stringify(body.p_data)],'$1,$2,$3::jsonb')
         else if(fn==='search_network')result=await call(db,'search_network',[JSON.stringify(body.p_filters),body.p_page,body.p_size],'$1::jsonb,$2,$3')
+        else if(fn==='browse_network')result=await call(db,'browse_network',[JSON.stringify(body.p_filters),body.p_page,body.p_size],'$1::jsonb,$2,$3')
+        else if(fn==='network_lookup')result=await call(db,'network_lookup',[body.p_category,body.p_q,body.p_selected,body.p_search],'$1,$2,$3,$4')
+        else if(fn==='network_locations')result=await call(db,'network_locations',[body.p_field,body.p_state,body.p_city,body.p_q,body.p_plan],'$1,$2,$3,$4,$5')
+        else if(fn==='health_plan_overview')result=await call(db,'health_plan_overview',[body.p_id],'$1')
+        else if(fn==='health_plan_network')result=await call(db,'health_plan_network',[body.p_plan,body.p_category,JSON.stringify(body.p_filters),body.p_page,body.p_size],'$1,$2,$3::jsonb,$4,$5')
         else if(fn==='network_document')result=await call(db,'network_document',[body.p_type,body.p_id],'$1,$2')
         else if(fn==='network_summary')result=await call(db,'network_summary',[],'')
+        else if(fn==='dashboard_network')result=await call(db,'dashboard_network',[body.p_section,body.p_size],'$1,$2')
         else {
           const table=url.pathname.split('/').pop();if(!['favorites','establishments','doctors','specialties','health_plans'].includes(table??''))throw new Error('Unexpected table')
           if(table==='establishments'&&route.request().method()==='POST'){

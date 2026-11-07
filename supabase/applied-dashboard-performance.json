@@ -1,0 +1,60 @@
+{
+  "date": "2026-11-05",
+  "recorded_at": "2026-11-06T01:37:54.548Z",
+  "project_ref": "qvkgadxyyzyjeiwjykgr",
+  "migration": "20261105000050_dashboard_performance",
+  "migration_sha256": "ed994073a63f16e540691f8aa67aacf866f3a28e44bcba329c70661c1381a654",
+  "applied": true,
+  "verification": {
+    "anonymous_rpc_denied": true,
+    "bounded_card_children": true,
+    "expected_personal_favorites": 2,
+    "favorites_items": 2,
+    "favorites_total": 2,
+    "migration_recorded": true,
+    "recent_items": 6,
+    "same_recent_ids": true,
+    "security_invoker": true,
+    "summary": {
+      "doctors": 1186,
+      "establishments": 202,
+      "health_plans": 1,
+      "specialties": 62
+    }
+  },
+  "comparison_database_ms": {
+    "recent": {
+      "before": 6128.023333333333,
+      "after": 13.209999999999999
+    },
+    "favorites": {
+      "before": 6051.643333333333,
+      "after": 5.876666666666666
+    },
+    "legacy_recent_after": 29.89666666666667,
+    "legacy_favorites_after": 36.663333333333334
+  },
+  "tests": {
+    "app_e2e": 43,
+    "pwa": 6,
+    "legacy_database": "PASS",
+    "dashboard_1500_rows": "PASS",
+    "typescript": "PASS",
+    "eslint": "PASS",
+    "production_build": "PASS"
+  },
+  "deployment": {
+    "projectId": "prj_1KcFEBw4fH3S2vBPysE6TkYxFczD",
+    "deploymentId": "dpl_GZYRYH2p18aq5THKK2XUEajV2xKz",
+    "previousDeploymentId": "dpl_47imKLDTHUg8jbTUcDLmSeWfTJDX",
+    "origin": "https://minha-saude-cyan.vercel.app",
+    "ready": true,
+    "method": "Static-only prebuilt Build Output API v3; no provider PDFs/JSON, source SQL or env files uploaded",
+    "pwa_http_audit": "8 resources PASS"
+  },
+  "limitations": [
+    "Browser Network tests use controlled Auth and actual local PostgreSQL; real user session was not accessed",
+    "Database timings exclude HTTP latency; production static resources are audited separately",
+    "Existing complex text/relational search path is preserved; fast path targets dashboard and ordinary lists"
+  ]
+}

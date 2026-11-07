@@ -4,10 +4,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { ArrowRight, Building2, Heart, HeartHandshake, Phone, Plus, Search, Stethoscope, Tags } from 'lucide-react'
 import { Button } from '../components/ui/button'
-import { Empty, Loading } from '../components/feedback'
+import { Empty } from '../components/feedback'
+import { DashboardContent } from '../components/dashboard-state'
 import { EntityCard, QueryError } from '../components/network'
 import { RegistrationTypePicker } from '../components/registration-type-picker'
-import { categories, contactLink, rpc, useNetwork } from '../lib/network'
+import { categories, contactLink, rpc, useDashboard } from '../lib/network'
+import { readQueryPolicy } from '../lib/requests'
 import type { Category } from '../lib/network'
 import { displayContactValue } from '../lib/contact-utils'
 import { useAuth } from '../lib/auth'
@@ -22,11 +24,12 @@ function SearchBox() {
 }
 export function HomePage() {
   const [adding, setAdding] = useState(false)
-  const { canAdmin } = useAccess()
+  const { canAdmin, canRead } = useAccess()
   const { session } = useAuth()
-  const recent = useNetwork({}, 1, 6)
-  const favorites = useNetwork({ favorites: 'true' }, 1, 4)
-  const counts = useQuery({ queryKey: ['summary', session?.user.id], enabled: !!session, queryFn: () => rpc<Record<Category, number>>('network_summary') })
+  const recent = useDashboard('recent', 6)
+  const favorites = useDashboard('favorites', 4)
+  const counts = useQuery({ ...readQueryPolicy, queryKey: ['summary', session?.user.id], enabled: !!session && canRead,
+    queryFn: ({ signal }) => rpc<Record<Category, number>>('network_summary', {}, { signal }) })
   const icons = { establishments: Building2, doctors: Stethoscope, specialties: Tags, health_plans: HeartHandshake }
   return <div className="dashboard-refined"><PwaInstallPrompt/>
     <div className="directory-heading"><div className="page-heading"><span className="eyebrow">SEU ESPAÇO DE CUIDADO</span><h1>Seu cuidado, por perto<span className="teal-text">.</span></h1><p>Organize sua rede e encontre o contato certo.</p></div>{canAdmin && <Button onClick={() => setAdding(true)}><Plus size={18}/>Novo cadastro</Button>}</div>
@@ -37,15 +40,19 @@ export function HomePage() {
       return <Link key={key} to={categories[key].path} className="quick-card"><span className={`category-icon ${['teal','blue','purple','cyan'][index]}`}><Icon size={22}/></span><ArrowRight className="card-arrow" size={18}/><h3>{categories[key].title}</h3><span className="record-count">{counts.data ? `${counts.data[key]} registros` : 'Consultar registros'}</span></Link>
     })}</div>
     {counts.isError && <QueryError error={counts.error} retry={() => void counts.refetch()}/>}
-    <section><div className="section-title"><h2>Seus favoritos</h2><Link className="teal-text" to="/favoritos">Ver todos →</Link></div>
-      {favorites.isPending ? <Loading/> : favorites.isError ? <QueryError error={favorites.error} retry={() => void favorites.refetch()}/> : favorites.data.items.length ? <div className="network-grid">{favorites.data.items.map(({ category, data }) => <EntityCard key={data.id} category={category} entity={data}/>)}</div> : <div className="panel"><Empty title="Seus contatos mais próximos" description="Marque o coração de um contato para acessá-lo rapidamente aqui."/><Button asChild variant="ghost" className="full"><Link to="/cadastros">Encontrar um contato<ArrowRight size={15}/></Link></Button></div>}
+    <section aria-labelledby="favorites-title"><div className="section-title"><h2 id="favorites-title">Seus favoritos</h2><Link className="teal-text" to="/favoritos">Ver todos →</Link></div>
+      <DashboardContent query={favorites} section="favorites" empty={<div className="panel"><Empty title="Você ainda não adicionou favoritos." description="Marque o coração de um contato para acessá-lo rapidamente aqui."/><Button asChild variant="ghost" className="full"><Link to="/cadastros">Encontrar um contato<ArrowRight size={15}/></Link></Button></div>}>
+        {data => <div className="network-grid">{data.items.map(({ category, data }) => <EntityCard key={data.id} category={category} entity={data}/>)}</div>}
+      </DashboardContent>
     </section>
-    <section className="recent-section"><div className="section-title"><h2>Últimos cadastros</h2><Link to="/cadastros" className="teal-text">Minha rede →</Link></div>
-      {recent.isPending ? <Loading/> : recent.isError ? <QueryError error={recent.error} retry={() => void recent.refetch()}/> : recent.data.items.length ? <div className="panel recent-list">{recent.data.items.map(({ category, data }) => {
+    <section className="recent-section" aria-labelledby="recent-title"><div className="section-title"><h2 id="recent-title">Últimos cadastros</h2><Link to="/cadastros" className="teal-text">Minha rede →</Link></div>
+      <DashboardContent query={recent} section="recent" empty={<div className="panel"><Empty title="Nenhum cadastro recente encontrado." description="Consulte a rede ou adicione seu primeiro cadastro."/>{canAdmin && <Button asChild variant="outline" className="full"><Link to="/estabelecimentos/novo"><Plus size={16}/>Cadastrar estabelecimento</Link></Button>}</div>}>
+        {result => <div className="panel recent-list">{result.items.map(({ category, data }) => {
         const contact = data.contacts?.find(c => c.is_primary) ?? data.contacts?.[0]
         const href = contact ? contactLink(contact) : undefined
         return <article className="recent-row" key={data.id}><Link to={`${categories[category].path}/${data.id}`}><strong>{data.name}</strong><small>{categories[category].singular}{contact ? ` · ${displayContactValue(contact)}` : ''}</small></Link>{href && <a className="button button-outline" href={href} aria-label={`Contato de ${data.name}`} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"><Phone size={16}/></a>}<Link className="button button-ghost" to={`${categories[category].path}/${data.id}`} aria-label={`Ver ${data.name}`}><ArrowRight size={17}/></Link></article>
-      })}</div> : <div className="panel"><Empty title="Seu cuidado começa com uma boa conexão" description="Adicione seu primeiro cadastro à sua rede pessoal."/>{canAdmin && <Button asChild variant="outline" className="full"><Link to="/estabelecimentos/novo"><Plus size={16}/>Cadastrar estabelecimento</Link></Button>}</div>}
+      })}</div>}
+      </DashboardContent>
     </section>
     {canAdmin && adding && <RegistrationTypePicker close={() => setAdding(false)}/>}
   </div>

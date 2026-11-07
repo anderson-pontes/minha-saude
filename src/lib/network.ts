@@ -3,6 +3,9 @@ import { supabase } from './supabase'
 import { useAuth } from './auth'
 import { useAccess } from './access'
 import { formatCep, normalizeSearchTerm, normalizeWebsite, phoneTelLink, whatsappLink } from './contact-utils'
+import { readQueryPolicy } from './requests'
+import { rpc } from './rpc'
+export { rpc } from './rpc'
 
 import type { Category } from './categories'
 export { categories, kinds } from './categories'
@@ -13,6 +16,7 @@ export type Entity = {
   id?: string; name: string; kind?: string; trade_name?: string; website?: string; description?: string; notes?: string;
   active?: boolean; favorite?: boolean; created_at?: string; updated_at?: string; link_notes?: string;
   professional_council?: string; registration_number?: string; registration_state?: string; professional_type?: string; cnpj?: string;
+  operator_name?: string; plan_registration?: string; establishments_count?: number; doctors_count?: number; specialties_count?: number; cities_count?: number; health_plans_count?: number; cities?: {city:string;state:string}[];
   contacts?: Contact[]; addresses?: Address[]; specialties?: Entity[]; doctors?: Entity[]; establishments?: Entity[]; health_plans?: Entity[];
 }
 export type Result = { category: Category; data: Entity }
@@ -27,25 +31,27 @@ export function errorMessage(error: unknown) {
   if (e.message?.includes('outra sessão')) return e.message
   return 'Não foi possível concluir. Confira os campos, sua conexão e tente novamente.'
 }
-export async function rpc<T>(name: string, args = {}): Promise<T> {
-  if (!supabase) throw new Error('Sessão indisponível')
-  const { data, error } = await supabase.rpc(name, args)
-  if (error) throw error
-  return data as T
-}
 export function useNetwork(filters: Record<string,string>, page = 1, size = 12) {
   const { session } = useAuth()
   const { canRead } = useAccess()
-  return useQuery({ queryKey: ['network',session?.user.id,filters,page,size], enabled: !!session && canRead && !!supabase,
-    queryFn: () => rpc<SearchResult>('search_network',{ p_filters: {...filters, q:normalizeSearchTerm(filters.q ?? '')}, p_page: page, p_size: size }) })
+  return useQuery({ ...readQueryPolicy, queryKey: ['network',session?.user.id,filters,page,size], enabled: !!session && canRead && !!supabase,
+    queryFn: ({ signal }) => rpc<SearchResult>('browse_network',{ p_filters: {...filters, q:normalizeSearchTerm(filters.q ?? '')}, p_page: page, p_size: size }, { signal }) })
+}
+export function useDashboard(section: 'recent' | 'favorites', size: number) {
+  const { session } = useAuth()
+  const { canRead } = useAccess()
+  // Same prefix as catalogue queries: existing create/favorite invalidations keep these fresh.
+  return useQuery({ ...readQueryPolicy, queryKey: ['network', session?.user.id, 'dashboard', section, size],
+    enabled: !!session && canRead && !!supabase,
+    queryFn: ({ signal }) => rpc<SearchResult>('dashboard_network', { p_section: section, p_size: size }, { signal }) })
 }
 export function useEntity(category: Category, id?: string) {
   const { session } = useAuth()
   const { canRead } = useAccess()
-  return useQuery({ queryKey: ['entity', session?.user.id, category, id], enabled: !!session && canRead && !!id,
-    queryFn: async () => {
+  return useQuery({ ...readQueryPolicy, queryKey: ['entity', session?.user.id, category, id], enabled: !!session && canRead && !!id,
+    queryFn: async ({ signal }) => {
       if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id!)) return null
-      return rpc<Entity | null>('network_document', { p_type: category, p_id: id! })
+      return category === 'health_plans' ? rpc<Entity | null>('health_plan_overview', {p_id:id!}, {signal}) : rpc<Entity | null>('network_document', { p_type: category, p_id: id! }, { signal })
     },
   })
 }

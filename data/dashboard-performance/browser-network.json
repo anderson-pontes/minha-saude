@@ -1,0 +1,17 @@
+{
+  "environment": "Isolated Edge; controlled Auth; real PGlite RPC behind browser HTTP routes; not a real-user production session",
+  "requests": [
+    {
+      "path": "/rest/v1/rpc/dashboard_network",
+      "section": "recent",
+      "status": 200,
+      "durationMs": 31
+    },
+    {
+      "path": "/rest/v1/rpc/dashboard_network",
+      "section": "favorites",
+      "status": 200,
+      "durationMs": 21
+    }
+  ]
+}

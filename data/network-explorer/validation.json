@@ -1,0 +1,13 @@
+{
+  "environment": "Supabase production, READ ONLY transaction, authenticated role",
+  "source": "supabase/validate-explorer-remote.sql",
+  "migrations": ["20261106014906", "20261106235136", "20261106235500", "20261106235906"],
+  "plan_counts": {"establishments": 202, "doctors": 1186, "specialties": 61, "cities": 2},
+  "catalog_counts": {"establishments": 202, "doctors": 1186, "specialties": 62, "health_plans": 1},
+  "summary_has_provider_arrays": false,
+  "first_page_items": 12,
+  "second_page_items": 12,
+  "page_overlap": 0,
+  "unscoped_doctor_places": 0,
+  "privileged_public_functions": 0
+}

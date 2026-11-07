@@ -1,0 +1,114 @@
+{
+  "phase": "after",
+  "project_ref": "qvkgadxyyzyjeiwjykgr",
+  "recorded_at": "2026-11-06T01:24:41.874Z",
+  "method": "READ ONLY SQL, role authenticated; query time measured inside PostgreSQL, no provider data emitted",
+  "cli_total_ms": 3809,
+  "measurements": [
+    {
+      "database_ms": 23.86,
+      "items": 6,
+      "operation": "recent",
+      "response_bytes": 3688,
+      "sample": 1
+    },
+    {
+      "database_ms": 8.1,
+      "items": 6,
+      "operation": "recent",
+      "response_bytes": 3688,
+      "sample": 2
+    },
+    {
+      "database_ms": 7.67,
+      "items": 6,
+      "operation": "recent",
+      "response_bytes": 3688,
+      "sample": 3
+    },
+    {
+      "database_ms": 6.43,
+      "items": 2,
+      "operation": "favorites",
+      "response_bytes": 1826,
+      "sample": 1
+    },
+    {
+      "database_ms": 5.24,
+      "items": 2,
+      "operation": "favorites",
+      "response_bytes": 1826,
+      "sample": 2
+    },
+    {
+      "database_ms": 5.96,
+      "items": 2,
+      "operation": "favorites",
+      "response_bytes": 1826,
+      "sample": 3
+    },
+    {
+      "database_ms": 1.27,
+      "items": 0,
+      "operation": "summary",
+      "response_bytes": 78,
+      "sample": 1
+    },
+    {
+      "database_ms": 0.76,
+      "items": 0,
+      "operation": "summary",
+      "response_bytes": 78,
+      "sample": 2
+    },
+    {
+      "database_ms": 0.72,
+      "items": 0,
+      "operation": "summary",
+      "response_bytes": 78,
+      "sample": 3
+    },
+    {
+      "database_ms": 37.91,
+      "items": 6,
+      "operation": "legacy_recent",
+      "response_bytes": 17530,
+      "sample": 1
+    },
+    {
+      "database_ms": 25.61,
+      "items": 6,
+      "operation": "legacy_recent",
+      "response_bytes": 17530,
+      "sample": 2
+    },
+    {
+      "database_ms": 26.17,
+      "items": 6,
+      "operation": "legacy_recent",
+      "response_bytes": 17530,
+      "sample": 3
+    },
+    {
+      "database_ms": 36.92,
+      "items": 2,
+      "operation": "legacy_favorites",
+      "response_bytes": 32587,
+      "sample": 1
+    },
+    {
+      "database_ms": 36,
+      "items": 2,
+      "operation": "legacy_favorites",
+      "response_bytes": 32587,
+      "sample": 2
+    },
+    {
+      "database_ms": 37.07,
+      "items": 2,
+      "operation": "legacy_favorites",
+      "response_bytes": 32587,
+      "sample": 3
+    }
+  ]
+}

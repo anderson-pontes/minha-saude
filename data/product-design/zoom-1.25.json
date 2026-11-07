@@ -1,0 +1,14 @@
+{
+  "method": "Native browser zoom through chrome.tabs.setZoom in isolated temporary profile",
+  "requested": 1.25,
+  "actual": 1.25,
+  "before": {
+    "width": 1416,
+    "dpr": 1
+  },
+  "after": {
+    "width": 1133,
+    "dpr": 1.25
+  },
+  "noPageOverflow": true
+}

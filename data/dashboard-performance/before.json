@@ -1,0 +1,72 @@
+{
+  "phase": "before",
+  "project_ref": "qvkgadxyyzyjeiwjykgr",
+  "recorded_at": "2026-11-06T01:18:27.167Z",
+  "method": "READ ONLY SQL, role authenticated; query time measured inside PostgreSQL, no provider data emitted",
+  "cli_total_ms": 43725,
+  "measurements": [
+    {
+      "database_ms": 6142.59,
+      "items": 6,
+      "operation": "recent",
+      "response_bytes": 17530,
+      "sample": 1
+    },
+    {
+      "database_ms": 6049.89,
+      "items": 6,
+      "operation": "recent",
+      "response_bytes": 17530,
+      "sample": 2
+    },
+    {
+      "database_ms": 6191.59,
+      "items": 6,
+      "operation": "recent",
+      "response_bytes": 17530,
+      "sample": 3
+    },
+    {
+      "database_ms": 5927.71,
+      "items": 2,
+      "operation": "favorites",
+      "response_bytes": 32587,
+      "sample": 1
+    },
+    {
+      "database_ms": 6061.07,
+      "items": 2,
+      "operation": "favorites",
+      "response_bytes": 32587,
+      "sample": 2
+    },
+    {
+      "database_ms": 6166.15,
+      "items": 2,
+      "operation": "favorites",
+      "response_bytes": 32587,
+      "sample": 3
+    },
+    {
+      "database_ms": 1.42,
+      "items": 0,
+      "operation": "summary",
+      "response_bytes": 78,
+      "sample": 1
+    },
+    {
+      "database_ms": 0.77,
+      "items": 0,
+      "operation": "summary",
+      "response_bytes": 78,
+      "sample": 2
+    },
+    {
+      "database_ms": 0.75,
+      "items": 0,
+      "operation": "summary",
+      "response_bytes": 78,
+      "sample": 3
+    }
+  ]
+}

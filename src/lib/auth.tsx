@@ -9,14 +9,25 @@ export function AuthProvider({ children, onSessionChange }: { children: ReactNod
     if (!supabase) return
     let active = true
     let revision = 0
+    let lastUserId: string | null | undefined
+    const updateSession = (session: Session | null) => {
+      if (!active) return
+      const userId = session?.user.id ?? null
+      // SIGNED_IN can repeat on focus; TOKEN_REFRESHED does not change catalogue ownership.
+      if (lastUserId !== userId) onSessionChange()
+      lastUserId = userId
+      setState({ session, loading: false, error: false })
+    }
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       revision++
-      onSessionChange()
-      if (active) setState({ session, loading: false, error: false })
+      updateSession(session)
     })
     const initialRevision = revision
     supabase.auth.getSession().then(({ data, error }) => {
-      if (active && revision === initialRevision) setState({ session: data.session, loading: false, error: !!error })
+      if (active && revision === initialRevision) {
+        if (error) setState({ session: null, loading: false, error: true })
+        else updateSession(data.session)
+      }
     }).catch(() => { if (active && revision === initialRevision) setState({ session: null, loading: false, error: true }) })
     return () => { active = false; subscription.unsubscribe() }
   }, [onSessionChange])

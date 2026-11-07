@@ -1,0 +1,15 @@
+{
+  "deployment_id": "dpl_DqYZh67ncfG8mrQo32yhqX11az8B",
+  "project": "minha-saude",
+  "team": "anderson-pontes-projects",
+  "environment": "production",
+  "url": "https://minha-saude-cyan.vercel.app",
+  "verified_at_utc": "2026-11-07T00:05:31.744Z",
+  "static_files_verified": 35,
+  "all_hashes_match": true,
+  "login_rendered": true,
+  "page_errors": 0,
+  "pwa_resource_checks_passed": 8,
+  "provider_data_uploaded": false,
+  "env_files_uploaded": false
+}

@@ -1,0 +1,205 @@
+{
+  "recorded_at": "2026-11-07T00:01:23.347Z",
+  "method": "READ ONLY, authenticated role, PostgreSQL elapsed time; aggregated metrics only",
+  "counts": {
+    "cities": 2,
+    "doctors": 1186,
+    "establishments": 202,
+    "specialties": 61
+  },
+  "measurements": [
+    {
+      "database_ms": 31.58,
+      "items": 1,
+      "operation": "plan_list",
+      "response_bytes": 712,
+      "sample": 1,
+      "total": 1
+    },
+    {
+      "database_ms": 22.11,
+      "items": 1,
+      "operation": "plan_list",
+      "response_bytes": 712,
+      "sample": 2,
+      "total": 1
+    },
+    {
+      "database_ms": 21.36,
+      "items": 1,
+      "operation": "plan_list",
+      "response_bytes": 712,
+      "sample": 3,
+      "total": 1
+    },
+    {
+      "database_ms": 11.7,
+      "items": 0,
+      "operation": "overview",
+      "response_bytes": 649,
+      "sample": 1,
+      "total": null
+    },
+    {
+      "database_ms": 10.71,
+      "items": 0,
+      "operation": "overview",
+      "response_bytes": 649,
+      "sample": 2,
+      "total": null
+    },
+    {
+      "database_ms": 10.52,
+      "items": 0,
+      "operation": "overview",
+      "response_bytes": 649,
+      "sample": 3,
+      "total": null
+    },
+    {
+      "database_ms": 52.16,
+      "items": 12,
+      "operation": "establishments",
+      "response_bytes": 15099,
+      "sample": 1,
+      "total": 202
+    },
+    {
+      "database_ms": 42.41,
+      "items": 12,
+      "operation": "establishments",
+      "response_bytes": 15099,
+      "sample": 2,
+      "total": 202
+    },
+    {
+      "database_ms": 49.9,
+      "items": 12,
+      "operation": "establishments",
+      "response_bytes": 15099,
+      "sample": 3,
+      "total": 202
+    },
+    {
+      "database_ms": 97.32,
+      "items": 12,
+      "operation": "doctors",
+      "response_bytes": 14014,
+      "sample": 1,
+      "total": 1186
+    },
+    {
+      "database_ms": 81.9,
+      "items": 12,
+      "operation": "doctors",
+      "response_bytes": 14014,
+      "sample": 2,
+      "total": 1186
+    },
+    {
+      "database_ms": 81.5,
+      "items": 12,
+      "operation": "doctors",
+      "response_bytes": 14014,
+      "sample": 3,
+      "total": 1186
+    },
+    {
+      "database_ms": 18.28,
+      "items": 12,
+      "operation": "specialties",
+      "response_bytes": 2178,
+      "sample": 1,
+      "total": 61
+    },
+    {
+      "database_ms": 17.43,
+      "items": 12,
+      "operation": "specialties",
+      "response_bytes": 2178,
+      "sample": 2,
+      "total": 61
+    },
+    {
+      "database_ms": 17.31,
+      "items": 12,
+      "operation": "specialties",
+      "response_bytes": 2178,
+      "sample": 3,
+      "total": 61
+    },
+    {
+      "database_ms": 511.62,
+      "items": 12,
+      "operation": "filtered_doctors",
+      "response_bytes": 14091,
+      "sample": 1,
+      "total": 85
+    },
+    {
+      "database_ms": 511.08,
+      "items": 12,
+      "operation": "filtered_doctors",
+      "response_bytes": 14091,
+      "sample": 2,
+      "total": 85
+    },
+    {
+      "database_ms": 510.64,
+      "items": 12,
+      "operation": "filtered_doctors",
+      "response_bytes": 14091,
+      "sample": 3,
+      "total": 85
+    },
+    {
+      "database_ms": 22.21,
+      "items": 20,
+      "operation": "lookup",
+      "response_bytes": 1773,
+      "sample": 1,
+      "total": null
+    },
+    {
+      "database_ms": 21.93,
+      "items": 20,
+      "operation": "lookup",
+      "response_bytes": 1773,
+      "sample": 2,
+      "total": null
+    },
+    {
+      "database_ms": 21.75,
+      "items": 20,
+      "operation": "lookup",
+      "response_bytes": 1773,
+      "sample": 3,
+      "total": null
+    },
+    {
+      "database_ms": 40.08,
+      "items": 12,
+      "operation": "directory",
+      "response_bytes": 13815,
+      "sample": 1,
+      "total": 1451
+    },
+    {
+      "database_ms": 35.99,
+      "items": 12,
+      "operation": "directory",
+      "response_bytes": 13815,
+      "sample": 2,
+      "total": 1451
+    },
+    {
+      "database_ms": 35.05,
+      "items": 12,
+      "operation": "directory",
+      "response_bytes": 13815,
+      "sample": 3,
+      "total": 1451
+    }
+  ],
+  "summary_has_provider_arrays": false
+}
