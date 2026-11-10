@@ -1,0 +1,7 @@
+{
+  "rpc": "network_lookup_page",
+  "httpStatus": 401,
+  "errorCode": "42501",
+  "anonymousDenied": true,
+  "schemaCacheRecognizesFunction": true
+}

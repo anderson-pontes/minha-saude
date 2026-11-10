@@ -1,8 +1,15 @@
 ﻿import { useEffect, useState } from 'react'
 import { useLookup, type LookupSource } from '../lib/explorer'
 import { FilterSelect } from './filter-select'
+import {SearchablePaginatedCombobox} from './searchable-paginated-combobox'
+import type {Category} from '../lib/categories'
 
-export function FilterCombobox({label,source,value,onChange,all='Todos',state='',city='',plan=''}:{label:string;source:LookupSource;value:string;onChange:(value:string)=>void;all?:string;state?:string;city?:string;plan?:string}) {
+type Props={label:string;source:LookupSource;value:string;onChange:(value:string)=>void;all?:string;state?:string;city?:string;plan?:string}
+export function FilterCombobox(props:Props){
+  if(!['state','city','neighborhood'].includes(props.source))return <SearchablePaginatedCombobox {...props} source={props.source as Category}/>
+  return <LocationFilterCombobox {...props}/>
+}
+function LocationFilterCombobox({label,source,value,onChange,all='Todos',state='',city='',plan=''}:Props) {
   const [open,setOpen]=useState(false)
   const [term,setTerm]=useState('')
   const [debounced,setDebounced]=useState('')

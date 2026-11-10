@@ -1,3 +1,4 @@
+import {PageHeader} from '../components/design-system'
 import { UpcomingAppointments } from '../components/agenda-upcoming'
 import { PwaInstallPrompt } from '../components/pwa'
 import { useState } from 'react'
@@ -33,12 +34,13 @@ export function HomePage() {
     queryFn: ({ signal }) => rpc<Record<Category, number>>('network_summary', {}, { signal }) })
   const icons = { establishments: Building2, doctors: Stethoscope, specialties: Tags, health_plans: HeartHandshake }
   return <div className="dashboard-refined"><PwaInstallPrompt/>
-    <div className="directory-heading"><div className="page-heading"><span className="eyebrow">SEU ESPAÇO DE CUIDADO</span><h1>Seu cuidado, por perto<span className="teal-text">.</span></h1><p>Organize sua rede e encontre o contato certo.</p></div>{canAdmin && <Button onClick={() => setAdding(true)}><Plus size={18}/>Novo cadastro</Button>}</div>
+    <PageHeader eyebrow="SEU ESPAÇO DE CUIDADO" title="Seu cuidado, por perto." description="Organize sua rede e encontre o contato certo." actions={canAdmin&&<Button onClick={()=>setAdding(true)}><Plus size={18}/>Novo cadastro</Button>}/>
+
     <section className="search-hero"><div className="hero-copy"><span className="hero-tag"><Heart size={14}/> MAIS PERTO DE VOCÊ</span><h2>Sua rede de saúde,<br/>em um só lugar.</h2><p>Busque por nome, especialidade, localização ou convênio.</p><SearchBox/></div><div className="hero-symbol" aria-hidden="true"><Stethoscope strokeWidth={1}/></div></section>
     <div className="section-title"><h2>Encontre na sua rede</h2><Link className="teal-text" to="/cadastros">Ver todos →</Link></div>
     <div className="quick-grid">{(Object.keys(categories) as Category[]).map((key, index) => {
       const Icon = icons[key]
-      return <Link key={key} to={categories[key].path} className="quick-card"><span className={`category-icon ${['teal','blue','purple','cyan'][index]}`}><Icon size={22}/></span><ArrowRight className="card-arrow" size={18}/><h3>{categories[key].title}</h3><span className="record-count">{counts.data ? `${counts.data[key]} registros` : 'Consultar registros'}</span></Link>
+      return <Link key={key} to={categories[key].path} className="quick-card"><span className={`category-icon ${['teal','blue','purple','cyan'][index]}`}><Icon size={22}/></span><ArrowRight className="card-arrow" size={18}/><h3>{categories[key].title}</h3><strong className="record-total">{counts.data?counts.data[key]:'—'}</strong><span className="record-count">{['Locais para cuidar de você','Profissionais da sua rede','Cuidados por especialidade','Cobertura e tranquilidade'][index]}</span></Link>
     })}</div>
     {counts.isError && <QueryError error={counts.error} retry={() => void counts.refetch()}/>}
     <UpcomingAppointments/>
@@ -50,9 +52,10 @@ export function HomePage() {
     <section className="recent-section" aria-labelledby="recent-title"><div className="section-title"><h2 id="recent-title">Últimos cadastros</h2><Link to="/cadastros" className="teal-text">Minha rede →</Link></div>
       <DashboardContent query={recent} section="recent" empty={<div className="panel"><Empty title="Nenhum cadastro recente encontrado." description="Consulte a rede ou adicione seu primeiro cadastro."/>{canAdmin && <Button asChild variant="outline" className="full"><Link to="/estabelecimentos/novo"><Plus size={16}/>Cadastrar estabelecimento</Link></Button>}</div>}>
         {result => <div className="panel recent-list">{result.items.map(({ category, data }) => {
+        const Icon=icons[category]
         const contact = data.contacts?.find(c => c.is_primary) ?? data.contacts?.[0]
         const href = contact ? contactLink(contact) : undefined
-        return <article className="recent-row" key={data.id}><Link to={`${categories[category].path}/${data.id}`}><strong>{data.name}</strong><small>{categories[category].singular}{contact ? ` · ${displayContactValue(contact)}` : ''}</small></Link>{href && <a className="button button-outline" href={href} aria-label={`Contato de ${data.name}`} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"><Phone size={16}/></a>}<Link className="button button-ghost" to={`${categories[category].path}/${data.id}`} aria-label={`Ver ${data.name}`}><ArrowRight size={17}/></Link></article>
+        return <article className="recent-row" key={data.id}><span className="recent-category-icon" aria-hidden="true"><Icon size={19}/></span><Link to={`${categories[category].path}/${data.id}`}><strong>{data.name}</strong><small>{categories[category].singular}{contact ? ` · ${displayContactValue(contact)}` : ''}</small></Link>{href && <a className="button button-outline" href={href} aria-label={`Contato de ${data.name}`} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"><Phone size={16}/></a>}<Link className="button button-ghost" to={`${categories[category].path}/${data.id}`} aria-label={`Ver ${data.name}`}><ArrowRight size={17}/></Link></article>
       })}</div>}
       </DashboardContent>
     </section>

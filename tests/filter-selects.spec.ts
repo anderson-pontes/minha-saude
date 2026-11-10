@@ -82,7 +82,7 @@ test('long dropdown flips above its trigger on a short mobile viewport',async({p
 test('lookup errors show a retry and recover without closing the dialog',async({page,db})=>{
   await seedExplorer(db)
   let failing=true
-  await page.route('**/rpc/network_lookup',route=>{
+  await page.route('**/rpc/network_lookup*',route=>{
     const body=route.request().postDataJSON()
     if(failing&&body.p_category==='specialties')return route.fulfill({status:403,json:{code:'42501',message:'Controlled lookup failure'}})
     return route.fallback()

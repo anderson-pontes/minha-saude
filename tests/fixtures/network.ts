@@ -27,6 +27,7 @@ export const test=base.extend<{ db:PGlite }>({
         else if(fn==='search_network')result=await call(db,'search_network',[JSON.stringify(body.p_filters),body.p_page,body.p_size],'$1::jsonb,$2,$3')
         else if(fn==='browse_network')result=await call(db,'browse_network',[JSON.stringify(body.p_filters),body.p_page,body.p_size],'$1::jsonb,$2,$3')
         else if(fn==='network_lookup')result=await call(db,'network_lookup',[body.p_category,body.p_q,body.p_selected,body.p_search],'$1,$2,$3,$4')
+        else if(fn==='network_lookup_page')result=await call(db,'network_lookup_page',[body.p_category,body.p_q,body.p_after_name,body.p_after_id,body.p_limit],'$1,$2,$3,$4,$5')
         else if(fn==='network_locations')result=await call(db,'network_locations',[body.p_field,body.p_state,body.p_city,body.p_q,body.p_plan],'$1,$2,$3,$4,$5')
         else if(fn==='health_plan_overview')result=await call(db,'health_plan_overview',[body.p_id],'$1')
         else if(fn==='health_plan_network')result=await call(db,'health_plan_network',[body.p_plan,body.p_category,JSON.stringify(body.p_filters),body.p_page,body.p_size],'$1,$2,$3::jsonb,$4,$5')

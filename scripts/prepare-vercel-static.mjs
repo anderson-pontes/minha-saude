@@ -4,7 +4,7 @@ import { dirname, extname, join, relative, resolve } from 'node:path'
 import { createHash } from 'node:crypto'
 import assert from 'node:assert/strict'
 const reportDirectory=process.argv[2]||'data/dashboard-performance'
-assert(['data/dashboard-performance','data/network-explorer','data/product-design','data/filter-selects','data/agenda'].includes(reportDirectory),'Unsupported report directory')
+assert(['data/dashboard-performance','data/network-explorer','data/product-design','data/filter-selects','data/agenda','data/agenda-filters'].includes(reportDirectory),'Unsupported report directory')
 const workspace=realpathSync(process.cwd())
 const output=resolve(workspace,'.vercel/output')
 assert.equal(realpathSync(dirname(output)),join(workspace,'.vercel'))
